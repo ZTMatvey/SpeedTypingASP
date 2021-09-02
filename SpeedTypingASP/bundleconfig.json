@@ -1,0 +1,9 @@
+[
+  {
+    "outputFileName": "wwwroot/JS/scripts.js",
+    "inputFiles": [
+      "wwwroot/JS/jQuery.js",
+      "wwwroot/JS/script.js"
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+.text-write {
+}
+.text-write-body {
+    display: flex;
+    flex-direction: column;
+}
+.text-write__text-box {
+    background-color: transparent;
+    margin: 20px;
+    padding: 5px;
+    border-bottom: 2px $sub-bg-color solid;
+    overflow: hidden;
+
+    font-family: $main-font-family;
+    color: $main-text-color;
+}
+.text-write__actual-string {
+    font-family: $main-font-family;
+    color: $main-text-color;
+    margin: 0 45px;
+    overflow: hidden;
+    text-align: center;
+}

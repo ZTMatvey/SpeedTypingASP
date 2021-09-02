@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,700;1,700&display=swap');
+//font-family: 'Vollkorn', serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+//font-family: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+//font-family: 'Material Icons';
+@import url('../fonts/icofont/icofont.min.css');
+//font-family: icofont,AdobeInvisFont,MyriadPro-Regular;
+@import "clear.scss";
+@import "variables.scss";
+@import "global.scss";
+@import "mixins.scss";
+@import "templates.scss";
+
+@import "header.scss";
+@import "main.scss";
+@import "footer.scss";

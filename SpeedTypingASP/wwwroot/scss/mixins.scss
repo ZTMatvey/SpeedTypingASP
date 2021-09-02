@@ -1,0 +1,23 @@
+@mixin button-color-settings($button-bg-color, $button-text-color)
+{
+    background-color: $button-bg-color;
+    color: $button-text-color;
+
+    transition: color .1s linear, background-color .1s linear;
+    &:hover{
+        background-color: $button-text-color;
+        color: $button-bg-color;
+    }
+}
+@mixin transparent-button-color-settings($button-bg-color, $button-text-color)
+{
+    color: $button-text-color;
+    border-color: $button-text-color;
+    background-color: transparent;
+
+    transition: color .1s linear, background-color .1s linear;
+    &:hover{
+        background-color: $button-text-color;
+        color: $button-bg-color;
+    }
+}

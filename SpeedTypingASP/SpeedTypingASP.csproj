@@ -16,9 +16,7 @@
     <Folder Include="wwwroot/scss/" />
     <Folder Include="wwwroot/js/" />
     <Folder Include="wwwroot/images/" />
-    <Folder Include="Domain/" />
     <Folder Include="Models/ViewComponents/" />
-    <Folder Include="Service/" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿<footer class="footer">
+﻿@using SpeedTypingASP.Service
+<footer class="footer">
     <div class="container">
         <div class="footer__body">
             <div class="footer__wrapper">
@@ -20,13 +21,13 @@
                         Связаться с автором:
                     </f5>
                     <div class="footer__links">
-                        <a href="https://vk.com/ztmqaz" target="_blank" class="footer__link">
+                        <a href="@Config.AuthorsVK" target="_blank" class="footer__link">
                             &#xed83;
                         </a>
-                        <a href="https://t.me/matveyztm" target="_blank" class="footer__link">
+                        <a href="@Config.AuthorsTelegram" target="_blank" class="footer__link">
                             &#xed75;
                         </a>
-                        <a href="mailto:zenoteper@icloud.com" target="_blank" class="footer__link">
+                        <a href="mailto:@Config.AuthorsEmail" target="_blank" class="footer__link">
                             &#xec56;
                         </a>
                     </div>

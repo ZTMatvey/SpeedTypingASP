@@ -28,6 +28,7 @@ namespace SpeedTypingASP
 
             services.AddTransient<ITextRepository, EFTextRepository>();
             services.AddTransient<DataManager>();
+            services.AddTransient<UserManager<UserInformation>>();
 
             services
                 .AddDbContext<ApplicationDbContext>(x=>x

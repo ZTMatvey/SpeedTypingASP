@@ -1,1 +1,104 @@
-﻿123
+﻿@using SpeedTypingASP.Domain
+@model AdminPanelInformation
+@{
+    var strTitle = "Панель администратора";
+    ViewBag.Title = strTitle;
+    var texts = Model.GetTexts();
+    var users = Model.GetUsers();
+}
+
+<div class="admin-panel">
+    <div class="container">
+        <h2 class="admin-panel__heading">
+            Панель администратора
+        </h2>
+        <div class="admin-panel__buttons">
+            <div class="admin-panel__button" id="admin-panel__texts-edit-button" onclick="adminPanelButtonClicked()">
+                Тексты
+            </div>
+            <div class="admin-panel__button" id="admin-panel__users-button" onclick="adminPanelButtonClicked()">
+                Пользователи
+            </div>
+        </div>
+
+        <div class="text-selection admin-panel__text-selection" id="admin-panel__text-selection">
+            <div class="text-selection__body">
+                <div class="text-selection__wrapper">
+                    <div class="text-selection__header">
+                        <h2 class="text-selection__heading admin-panel__text-selection-text">
+                            Выберите текст:
+                        </h2>
+                    </div>
+                    @if (texts.Any())
+                    {
+                        <div class="text-selection__main">
+                            @foreach (var text in texts)
+                            {
+                                <div class="text-selection__item">
+                                    <h4 class="text-selection__item-text-name">
+                                        @text.Title
+                                    </h4>
+                                    <a href="#" class="text-selection__button">
+                                        Выбрать
+                                    </a>
+                                    <a href="#" class="text-selection__button admin-panel__text-edit-button">
+                                        Редактировать
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+        <div class="admin-panel__users" id="admin-panel__users">
+
+            @if (users.Any())
+            {
+                @foreach (var user in users)
+                {
+                    <div class="admin-panel__user">
+                        <div class="user__info-block">
+                            <div class="user__info-type">
+                                Имя пользователя:
+                            </div>
+                            <div class="user__text">
+                                @user.UserName
+                            </div>
+                        </div>
+
+                        <div class="user__info-block">
+                            <div class="user__info-type">
+                                Хэш пароля:
+                            </div>
+                            <div class="user__text">
+                                @user.PasswordHash
+                            </div>
+                        </div>
+
+                        <div class="user__info-block">
+                            <div class="user__info-type">
+                                Почта:
+                            </div>
+                            <div class="user__text">
+                                @user.Email
+                            </div>
+                        </div>
+
+                        <div class="user__info-block">
+                            <div class="user__info-type">
+                                Роль:
+                            </div>
+                            <div class="user__text">
+                                роль
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<script src="~/JS/admin-panel.js"></script>

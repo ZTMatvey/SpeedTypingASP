@@ -1,20 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     @await Html.PartialAsync("MetaTagsPartial")
     @await Html.PartialAsync("cssPartial")
 </head>
 <body>
     <div class="wrapper">
-
+        <script src="~/JS/jQuery.js"></script>
         @await Html.PartialAsync("HeaderPartial")
         <main class="main">
-            @*@import "text-selection.html"*@
             @RenderBody()
         </main>
         @await Html.PartialAsync("FooterPartial")
-        
-        @await Html.PartialAsync("ScriptsPartial")
     </div>
 </body>
 </html>

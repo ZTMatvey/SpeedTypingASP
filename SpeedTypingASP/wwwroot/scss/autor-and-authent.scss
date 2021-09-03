@@ -1,14 +1,12 @@
 .auth {
     height: 100%;
 }
-
 .auth___container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
-
 .auth__wrapper {
     background-color: $sub-bg-color;
     padding: 50px;
@@ -20,21 +18,18 @@
     width: 100%;
     max-width: 800px;
 }
-
 .auth__heading {
     font-family: $main-font-family;
     color: $main-text-color;
     font-size: 25px;
     margin-bottom: 20px;
 }
-
 .auth__form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .auth__input-text {
     font-family: $main-font-family;
     color: $main-text-color;
@@ -44,33 +39,30 @@
     background-color: transparent;
     border: 1px $main-text-color solid;
     padding: 5px;
-    transition: width .1s linear;
 
-    &:focus {
+    transition: width .1s linear;
+    &:focus{
         width: 65%;
     }
 }
-
 .auth__bottom {
+
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 50%;
 }
-
 .auth__remember-me {
     display: flex;
     align-items: center;
 }
-
 .auth__remember-me-text {
     font-family: $main-font-family;
     color: $main-text-color;
     font-size: 11px;
     margin-left: 6px;
 }
-
 .auth__check-box {
     appearance: none;
     width: 16px;
@@ -83,31 +75,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .1 linear;
 
-    &::after {
+    transition: .1 linear;
+    &::after{
         display: none;
         font-family: 'Material Icons';
         content: 'check';
     }
-
-    &:hover {
+    &:hover{
         background-color: $main-text-color;
         color: $sub-bg-color;
     }
-
-    &:checked::after {
+    &:checked::after{
         display: block;
     }
 }
-
 .auth__button {
     font-family: $main-font-family;
     color: $main-text-color;
     cursor: pointer;
     @extend %tpl-transparent-button;
 }
-
-.auth__register-button {
+.auth__register-button{
     margin-top: 20px;
 }

@@ -1,0 +1,83 @@
+﻿
+<div class="admin-panel">
+    <div class="container">
+        <h2 class="admin-panel__heading">
+            Панель администратора
+        </h2>
+        <div class="admin-panel__buttons">
+            <div class="admin-panel__button" id="admin-panel__texts-edit-button" onclick="adminPanelButtonClicked()">
+                Тексты
+            </div>
+            <div class="admin-panel__button" id="admin-panel__users-button" onclick="adminPanelButtonClicked()">
+                Пользователи
+            </div>
+        </div>
+
+        <div class="text-selection admin-panel__text-selection" id="admin-panel__text-selection">
+            <div class="text-selection__body">
+                <div class="text-selection__wrapper">
+                    <div class="text-selection__header">
+                        <h2 class="text-selection__heading admin-panel__text-selection-text">
+                            Выберите текст:
+                        </h2>
+                    </div>
+                    <div class="text-selection__main">
+
+                        <div class="text-selection__item">
+                            <h4 class="text-selection__item-text-name">
+                                Ipsum Lorem
+                            </h4>
+                            <a href="#" class="text-selection__button">
+                                Выбрать
+                            </a>
+                            <a href="#" class="text-selection__button admin-panel__text-edit-button">
+                                Редактировать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-panel__users" id="admin-panel__users">
+            <div class="admin-panel__user">
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Имя пользователя:
+                    </div>
+                    <div class="user__text">
+                        someUser
+                    </div>
+                </div>
+
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Пароль:
+                    </div>
+                    <div class="user__text">
+                        somePassword
+                    </div>
+                </div>
+
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Почта:
+                    </div>
+                    <div class="user__text">
+                        some@email.com
+                    </div>
+                </div>
+
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Роль:
+                    </div>
+                    <div class="user__text">
+                        someRole
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/JS/admin-panel.js"></script>

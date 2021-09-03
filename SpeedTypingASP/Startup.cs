@@ -54,8 +54,19 @@ namespace SpeedTypingASP
                 opts.SlidingExpiration = true;
             });
 
+            services.AddAuthorization(x =>
+            {
+                x.AddPolicy("AdminArea", policy =>
+                {
+                    policy.RequireRole("admin");
+                });
+            });
+
             services
-                .AddControllersWithViews()
+                .AddControllersWithViews(x =>
+                {
+                    x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddSessionStateTempDataProvider();
         }
@@ -76,6 +87,7 @@ namespace SpeedTypingASP
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }

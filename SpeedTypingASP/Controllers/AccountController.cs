@@ -22,7 +22,7 @@ namespace SpeedTypingASP.Controllers
             this.signInManager = signInManager;
         }
         [AllowAnonymous]
-        public IActionResult Index(string returnUrl)
+        public IActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
             return View(new LoginViewModel());
@@ -30,7 +30,7 @@ namespace SpeedTypingASP.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model, string resultUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -38,10 +38,12 @@ namespace SpeedTypingASP.Controllers
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                    SignInResult result =
-                        await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                    //todo: false to model.RememberMe
+                    var result =
+                        await signInManager
+                            .PasswordSignInAsync(user, model.Password, false, false);
                     if (result.Succeeded)
-                        return Redirect(resultUrl ?? "/");
+                        return Redirect(returnUrl ?? "/");
                     ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверный логин или пароль");
                 }
             }

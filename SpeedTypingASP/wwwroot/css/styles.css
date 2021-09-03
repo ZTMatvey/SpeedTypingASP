@@ -75,7 +75,7 @@ body {
   flex-direction: column;
   height: 100%; }
 
-.sign-button, .text-selection__button {
+.sign-button, .text-selection__button, .auth__button {
   color: #333;
   border-color: #333;
   background-color: transparent;
@@ -86,7 +86,7 @@ body {
   border-width: 1px;
   border-style: solid;
   border-radius: 3px; }
-  .sign-button:hover, .text-selection__button:hover {
+  .sign-button:hover, .text-selection__button:hover, .auth__button:hover {
     background-color: #333;
     color: #9BA1F2; }
 
@@ -209,6 +209,99 @@ body {
   margin: 0 45px;
   overflow: hidden;
   text-align: center; }
+
+.auth {
+  height: 100%; }
+
+.auth___container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; }
+
+.auth__wrapper {
+  background-color: #9BA1F2;
+  padding: 50px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; }
+
+.auth__heading {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 25px;
+  margin-bottom: 20px; }
+
+.auth__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.auth__input-text {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  margin-top: 10px;
+  display: block;
+  width: 50%;
+  background-color: transparent;
+  border: 1px #333 solid;
+  padding: 5px;
+  transition: width .1s linear; }
+  .auth__input-text:focus {
+    width: 65%; }
+
+.auth__bottom {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%; }
+
+.auth__remember-me {
+  display: flex;
+  align-items: center; }
+
+.auth__remember-me-text {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 11px;
+  margin-left: 6px; }
+
+.auth__check-box {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .1 linear; }
+  .auth__check-box::after {
+    display: none;
+    font-family: 'Material Icons';
+    content: 'check'; }
+  .auth__check-box:hover {
+    background-color: #333;
+    color: #9BA1F2; }
+  .auth__check-box:checked::after {
+    display: block; }
+
+.auth__button {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  cursor: pointer; }
+
+.auth__register-button {
+  margin-top: 20px; }
 
 .main {
   flex: 1 1 auto; }

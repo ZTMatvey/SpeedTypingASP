@@ -33,5 +33,11 @@ namespace SpeedTypingASP.Domain.Repositories.EF
             context.Texts.Remove(new Text() { Id = id });
             context.SaveChanges();
         }
+        public void DeleteTextByName(string name)
+        {
+            var textToDelete = context.Texts.FirstOrDefault(x => x.Title == name);
+            context.Texts.Remove(textToDelete);
+            context.SaveChanges();
+        }
     }
 }

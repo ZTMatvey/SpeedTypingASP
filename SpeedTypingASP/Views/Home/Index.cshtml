@@ -24,7 +24,10 @@
                                 <p class="text-selection__content">
                                     @text.TextContent
                                 </p>
-                                <a href="#" class="text-selection__button">
+                                <a class="text-selection__button"
+                                   asp-controller="Home"
+                                   asp-action="TextWrite"
+                                   asp-route-textTitle="@text.Title">
                                     Выбрать
                                 </a>
                             </div>

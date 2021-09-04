@@ -48,5 +48,10 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
             }
             return View(model);
         }
+        public IActionResult Delete(string textName)
+        {
+            dataManager.Texts.DeleteTextByName(textName);
+            return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+        }
     }
 }

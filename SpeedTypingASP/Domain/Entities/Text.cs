@@ -9,9 +9,9 @@ namespace SpeedTypingASP.Domain.Entities
 {
     public class Text : EntityBase
     {
-        [Display(Name = "Заголовок")]
+        [Required]
         public string Title { get; set; }
-        [Display(Name = "Виды текста")]
+        [Required]
         public string TextContent { get; set; }
     }
 }

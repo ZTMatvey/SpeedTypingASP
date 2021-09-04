@@ -14,5 +14,6 @@ namespace SpeedTypingASP.Domain.Repositories.Abstract
         Text GetTextByName(string name);
         void SaveText(Text text);
         void DeleteTextById(string id);
+        void DeleteTextByName(string name);
     }
 }

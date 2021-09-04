@@ -1,4 +1,6 @@
-﻿<header class="header">
+﻿@inject UserManager<UserInformation> UserManager
+@inject SignInManager<UserInformation> SignInManager
+<header class="header">
     <div class="container">
         <div class="header__top">
             <div class="logo">
@@ -15,12 +17,27 @@
                 </div>
             </div>
             <div class="header__sign-buttons">
-                <a href="#" class="sign-button">
-                    Вход
-                </a>
-                <a href="#" class="sign-button">
-                    Регистрация
-                </a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a class="sign-button"
+                       asp-controller="Account"
+                       asp-action="Logout">
+                        @User.Identity.Name
+                    </a>
+                }
+                else
+                {
+                    <a class="sign-button"
+                       asp-controller="Account"
+                       asp-action="Login">
+                        Вход
+                    </a>
+                    <a class="sign-button"
+                       asp-controller="Account"
+                       asp-action="Login">
+                        Регистрация
+                    </a>
+                }
             </div>
         </div>
     </div>

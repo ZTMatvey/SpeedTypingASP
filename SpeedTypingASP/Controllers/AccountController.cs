@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SpeedTypingASP.Domain;
 using SpeedTypingASP.Models;
+using SpeedTypingASP.Service;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace SpeedTypingASP.Controllers
@@ -24,6 +25,8 @@ namespace SpeedTypingASP.Controllers
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             ViewBag.returnUrl = returnUrl;
             return View(new LoginViewModel());
         }

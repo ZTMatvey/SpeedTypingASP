@@ -50,6 +50,14 @@
                                         asp-route-textName="@text.Title">
                                         Редактировать
                                     </a>
+                                    <a
+                                        class="text-selection__button admin-panel__text-edit-button"
+                                        asp-area="Admin"
+                                        asp-controller="TextEdit"
+                                        asp-action="Delete"
+                                        asp-route-textName="@text.Title">
+                                        Удалить
+                                    </a>
                                 </div>
                             }
                         </div>

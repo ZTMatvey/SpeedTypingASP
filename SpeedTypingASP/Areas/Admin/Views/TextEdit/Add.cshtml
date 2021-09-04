@@ -1,0 +1,36 @@
+﻿@model Text
+@{
+    var strTitle = "Добавление текста";
+    ViewBag.Title = strTitle;
+}
+
+<div class="text-edit">
+    <div class="container">
+        <div class="text-edit__body">
+            <div class="text-edit__wrapper">
+                <form asp-area="Admin"
+                      asp-controller="TextEdit"
+                      asp-action="Add"
+                      method="post"
+                      enctype="multipart/form-data">
+                    <input type="hidden" asp-for="Id" />
+                    <h2 class="text-edit__heading">
+                        @strTitle
+                    </h2>
+                    <div asp-validation-summary="All"></div>
+                    <input asp-for="Title" value="@Model.Title" placeholder="Название текста"
+                           class="text-edit__edit-title-input">
+                    <div placeholder="Text" class="text-edit__text-wrapper">
+                        <textarea asp-for="TextContent" placeholder="Text" class="text-edit__textarea" id="text-edit__textarea">
+                            @Model.TextContent
+                        </textarea>
+                    </div>
+                    <button type="submit" class="admin-panel__button text-edit__save-changes-button">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/JS/text-edit.js"></script>

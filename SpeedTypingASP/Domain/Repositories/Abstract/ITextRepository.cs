@@ -11,6 +11,7 @@ namespace SpeedTypingASP.Domain.Repositories.Abstract
     {
         IQueryable<Text> GetTexts();
         Text GetTextById(string id);
+        Text GetTextByName(string name);
         void SaveText(Text text);
         void DeleteTextById(string id);
     }

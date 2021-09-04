@@ -1,10 +1,7 @@
-﻿@using SpeedTypingASP.Domain
-@model AdminPanelInformation
+﻿@model IQueryable<Text>
 @{
     var strTitle = "Панель администратора";
     ViewBag.Title = strTitle;
-    var texts = Model.GetTexts();
-    var users = Model.GetUsers();
 }
 
 <div class="admin-panel">
@@ -25,23 +22,32 @@
             <div class="text-selection__body">
                 <div class="text-selection__wrapper">
                     <div class="text-selection__header">
-                        <h2 class="text-selection__heading admin-panel__text-selection-text">
-                            Выберите текст:
-                        </h2>
+                        <a
+                            asp-area="Admin"
+                            asp-controller="TextEdit"
+                            asp-action="Add"
+                            class="admin-panel__button">
+                            Добавить текст
+                        </a>
                     </div>
-                    @if (texts.Any())
+                    @if (Model.Any())
                     {
                         <div class="text-selection__main">
-                            @foreach (var text in texts)
+                            @foreach (var text in Model)
                             {
                                 <div class="text-selection__item">
                                     <h4 class="text-selection__item-text-name">
                                         @text.Title
                                     </h4>
-                                    <a href="#" class="text-selection__button">
-                                        Выбрать
-                                    </a>
-                                    <a href="#" class="text-selection__button admin-panel__text-edit-button">
+                                    <p class="text-selection__content">
+                                        @text.TextContent
+                                    </p>
+                                    <a
+                                        class="text-selection__button admin-panel__text-edit-button"
+                                        asp-area="Admin"
+                                        asp-controller="TextEdit"
+                                        asp-action="Edit"
+                                        asp-route-textName="@text.Title">
                                         Редактировать
                                     </a>
                                 </div>
@@ -51,53 +57,38 @@
                 </div>
             </div>
         </div>
-
-
+        
         <div class="admin-panel__users" id="admin-panel__users">
-
-            @if (users.Any())
-            {
-                @foreach (var user in users)
-                {
-                    <div class="admin-panel__user">
-                        <div class="user__info-block">
-                            <div class="user__info-type">
-                                Имя пользователя:
-                            </div>
-                            <div class="user__text">
-                                @user.UserName
-                            </div>
-                        </div>
-
-                        <div class="user__info-block">
-                            <div class="user__info-type">
-                                Хэш пароля:
-                            </div>
-                            <div class="user__text">
-                                @user.PasswordHash
-                            </div>
-                        </div>
-
-                        <div class="user__info-block">
-                            <div class="user__info-type">
-                                Почта:
-                            </div>
-                            <div class="user__text">
-                                @user.Email
-                            </div>
-                        </div>
-
-                        <div class="user__info-block">
-                            <div class="user__info-type">
-                                Роль:
-                            </div>
-                            <div class="user__text">
-                                роль
-                            </div>
-                        </div>
+            <div class="admin-panel__user">
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Имя пользователя:
                     </div>
-                }
-            }
+                </div>
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Хэш пароля:
+                    </div>
+                    <div class="user__text">
+                    </div>
+                </div>
+
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Почта:
+                    </div>
+                    <div class="user__text">
+                    </div>
+                </div>
+
+                <div class="user__info-block">
+                    <div class="user__info-type">
+                        Роль:
+                    </div>
+                    <div class="user__text">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

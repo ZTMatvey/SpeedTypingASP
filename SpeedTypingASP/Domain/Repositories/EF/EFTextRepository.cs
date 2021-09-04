@@ -14,13 +14,15 @@ namespace SpeedTypingASP.Domain.Repositories.EF
         private readonly ApplicationDbContext context;
         public EFTextRepository(ApplicationDbContext context) => this.context = context;
         public IQueryable<Text> GetTexts() => context.Texts;
-
         public Text GetTextById(string id) => context.Texts.FirstOrDefault(x => x.Id == id);
-
+        public Text GetTextByName(string name) => context.Texts.FirstOrDefault(x => x.Title == name);
         public void SaveText(Text text)
         {
             if (text.Id == default)
+            {
+                text.Id = Guid.NewGuid().ToString();    
                 context.Entry(text).State = EntityState.Added;
+            }
             else
                 context.Entry(text).State = EntityState.Modified;
             context.SaveChanges();

@@ -1,1 +1,37 @@
-﻿@await Html.PartialAsync("TextSelectionPartial")
+﻿@model IQueryable<Text>
+@{
+    var strTitle = "Выбор текста";
+    ViewBag.Title = strTitle;
+}
+<div class="text-selection">
+    <div class="container">
+        <div class="text-selection__body">
+            <div class="text-selection__wrapper">
+                <div class="text-selection__header">
+                    <h2 class="text-selection__heading">
+                        Выберите текст:
+                    </h2>
+                </div>
+                <div class="text-selection__main">
+                    @if (Model.Any())
+                    {
+                        @foreach (var text in Model)
+                        {
+                            <div class="text-selection__item">
+                                <h4 class="text-selection__item-text-name">
+                                    @text.Title
+                                </h4>
+                                <p class="text-selection__content">
+                                    @text.TextContent
+                                </p>
+                                <a href="#" class="text-selection__button">
+                                    Выбрать
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -192,6 +192,13 @@ body {
 .text-selection__button {
   margin-top: 20px; }
 
+.text-selection__content {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center; }
+
 .text-write-body {
   display: flex;
   flex-direction: column; }
@@ -315,9 +322,6 @@ body {
   font-size: 30px;
   font-weight: 700; }
 
-.admin-panel__text-selection-text {
-  font-size: 25px; }
-
 .admin-panel__text-selection {
   margin: 20px 0; }
 
@@ -388,6 +392,63 @@ body {
   color: #333;
   font-size: 18px;
   margin-left: 5px; }
+
+.text-edit {
+  height: 100%; }
+
+.text-edit__body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+
+.text-edit__wrapper {
+  width: 100%;
+  max-width: 800px; }
+
+.text-edit__heading {
+  font-family: "Vollkorn", serif;
+  color: #333;
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: 30px; }
+
+.text-edit__text-wrapper {
+  margin-top: 30px;
+  width: 100%;
+  background-color: #9BA1F2;
+  border-radius: 3px;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  color: #333; }
+
+.text-edit__textarea {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  resize: none;
+  outline: none;
+  height: 100px;
+  width: 100%;
+  overflow-y: hidden;
+  background-color: transparent;
+  line-height: 15px;
+  font-size: 14px; }
+
+.text-edit__edit-title-input {
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  background-color: transparent;
+  border-bottom: 1px #333 solid;
+  text-align: center;
+  font-size: 18px; }
+  .text-edit__edit-title-input:focus {
+    text-align: left; }
+
+.text-edit__save-changes-button {
+  margin: 30px 0; }
 
 .main {
   flex: 1 1 auto; }

@@ -1,6 +1,7 @@
 .text-selection {
     margin: 50px 0;
 }
+
 .text-selection__body {
     display: flex;
     justify-content: center;
@@ -8,20 +9,24 @@
     height: inherit;
     min-height: 50vh;
 }
+
 .text-selection__wrapper {
     width: 100%;
     max-width: 800px;
 }
+
 .text-selection__header {
     display: flex;
     justify-content: center;
 }
+
 .text-selection__heading {
     font-family: $headings-font-family;
     color: $main-text-color;
     font-weight: 700;
     font-size: 35px;
 }
+
 .text-selection__main {
     display: flex;
     justify-content: space-between;
@@ -41,13 +46,23 @@
     justify-content: center;
     align-items: center;
 }
+
 .text-selection__item-text-name {
     font-family: $headings-font-family;
     color: $main-text-color;
     font-weight: 700;
     font-size: 20px;
 }
+
 .text-selection__button {
     margin-top: 20px;
     @extend %tpl-transparent-button;
+}
+
+.text-selection__content {
+    font-family: $main-font-family;
+    color: $main-text-color;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
 }

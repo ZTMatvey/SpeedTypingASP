@@ -2,19 +2,19 @@
     text-align: center;
     padding: 40px;
 }
-.admin-panel__heading{
+
+.admin-panel__heading {
     font-family: $headings-font-family;
     color: $main-text-color;
     font-size: 30px;
     font-weight: 700;
 }
-.admin-panel__text-selection-text{
-    font-size: 25px;
-}
-.admin-panel__text-selection{
+
+.admin-panel__text-selection {
     margin: 20px 0;
 }
-.admin-panel__text-edit-button{
+
+.admin-panel__text-edit-button {
     font-size: 10px;
     padding: 5px;
     margin-top: 10px;
@@ -25,21 +25,22 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-
     border-bottom: $main-text-color 1px solid;
     padding-bottom: 15px;
 
-    & .admin-panel__button:first-child{
+    & .admin-panel__button:first-child {
         margin-left: 0;
     }
 }
-.admin-panel__button{
+
+.admin-panel__button {
     cursor: pointer;
     @extend %tpl-transparent-button;
     @include transparent-button-color-settings($main-bg-color, $main-text-color);
     margin-left: 10px;
 }
-.admin-panel__button-active{
+
+.admin-panel__button-active {
     background-color: $main-text-color;
     color: $main-bg-color;
 }
@@ -53,6 +54,7 @@
     margin-top: 30px;
     gap: 15px;
 }
+
 .admin-panel__user {
     background-color: $sub-bg-color;
     flex: 1 1 calc(25% - 45px);
@@ -63,21 +65,24 @@
     justify-content: center;
     align-items: center;
 
-    & .user__info-block:first-child{
+    & .user__info-block:first-child {
         margin-top: 0;
     }
 }
+
 .user__info-block {
     display: flex;
     align-items: center;
     margin-top: 3px;
 }
+
 .user__info-type {
     font-family: $main-font-family;
     color: $main-text-color;
     font-weight: 700;
     font-size: 18px;
 }
+
 .user__text {
     font-family: $main-font-family;
     color: $main-text-color;

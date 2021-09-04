@@ -11,14 +11,14 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly AdminPanelInformation adminPanelInformation;
-        public HomeController(DataManager dataManager, UserManager<UserInformation> userManager)
+        private readonly DataManager dataManager;
+        public HomeController(DataManager dataManager)
         {
-            this.adminPanelInformation = new AdminPanelInformation(userManager, dataManager);
+            this.dataManager = dataManager;
         }
         public IActionResult Index()
         {
-            return View(adminPanelInformation);
+            return View(dataManager.Texts.GetTexts());
         }
     }
 }

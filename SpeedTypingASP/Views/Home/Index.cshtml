@@ -13,28 +13,29 @@
                     </h2>
                 </div>
                 <div class="text-selection__main">
-                    @if (Model.Any())
-                    {
-                        @foreach (var text in Model)
+                    <cache>
+                        @if (Model.Any())
                         {
-                            <div class="text-selection__item">
-                                <h4 class="text-selection__item-text-name">
-                                    @text.Title
-                                </h4>
-                                <p class="text-selection__content">
-                                    @text.TextContent
-                                </p>
-                                <a class="text-selection__button"
-                                   asp-controller="Home"
-                                   asp-action="TextWrite"
-                                   asp-route-textTitle="@text.Title">
-                                    Выбрать
-                                </a>
-                            </div>
+                            @foreach (var text in Model)
+                            {
+                                <div class="text-selection__item">
+                                    <h4 class="text-selection__item-text-name">
+                                        @text.Title
+                                    </h4>
+                                    <p class="text-selection__content text-content">@text.TextContent</p>
+                                    <a class="text-selection__button"
+                                       asp-controller="Home"
+                                       asp-action="TextWrite"
+                                       asp-route-textTitle="@text.Title">
+                                        Выбрать
+                                    </a>
+                                </div>
+                            }
                         }
-                    }
+                    </cache>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="~/JS/text-output.js"></script>

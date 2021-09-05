@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace SpeedTypingASP.Models
 {
-    public class LoginViewModel
+    public class RegisterViewModel
     {
         [Required]
         public string UserName { get; set; }
         [Required]
+        public string Email { get; set; }
+        [Required]
         [UIHint("password")]
         public string Password { get; set; }
-        public bool RememberMe { get; set; }
+        [Required]
+        [UIHint("password")]
+        public string ConfirmedPassword { get; set; }
     }
 }

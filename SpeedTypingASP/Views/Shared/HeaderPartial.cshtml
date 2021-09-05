@@ -3,7 +3,7 @@
 <header class="header">
     <div class="container">
         <div class="header__top">
-            <div class="logo">
+            <a href="/" class="logo">
                 <div class="logo__image">
                     keyboard_alt
                 </div>
@@ -15,11 +15,12 @@
                         typing
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="header__sign-buttons">
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <a class="sign-button"
+                       asp-area=""
                        asp-controller="Account"
                        asp-action="Logout">
                         @User.Identity.Name
@@ -34,7 +35,7 @@
                     </a>
                     <a class="sign-button"
                        asp-controller="Account"
-                       asp-action="Login">
+                       asp-action="Register">
                         Регистрация
                     </a>
                 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using SpeedTypingASP.Domain;
 using SpeedTypingASP.Models;
 using SpeedTypingASP.Service;
@@ -17,7 +18,9 @@ namespace SpeedTypingASP.Controllers
     {
         private readonly UserManager<UserInformation> userManager;
         private readonly SignInManager<UserInformation> signInManager;
-        public AccountController(UserManager<UserInformation> userManager, SignInManager<UserInformation> signInManager)
+        public AccountController(
+            UserManager<UserInformation> userManager,
+            SignInManager<UserInformation> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -52,7 +55,49 @@ namespace SpeedTypingASP.Controllers
             }
             return View(model);
         }
-
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl)
+        {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+            ViewBag.returnUrl = returnUrl;
+            return View(new RegisterViewModel());
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Password == model.ConfirmedPassword)
+                {
+                    var userId = Guid.NewGuid().ToString();
+                    var user = new UserInformation()
+                    {
+                        UserName = model.UserName,
+                        Email = model.Email,
+                        Id = userId
+                    };
+                    var result = await userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        if(model.UserName.Contains("admin"))
+                            await userManager.AddToRoleAsync(user, "admin");
+                        else
+                            await userManager.AddToRoleAsync(user, "user");
+                        await signInManager
+                                .PasswordSignInAsync(user, model.Password, false, false);
+                        return Redirect(returnUrl ?? "/");
+                    }
+                    else
+                        foreach (var error in result.Errors)
+                            ModelState.AddModelError("", error.Description);
+                }
+                if (model.Password != model.ConfirmedPassword)
+                    ModelState.AddModelError(nameof(RegisterViewModel.Password), "Пароли не совпадают");
+            }
+            return View(model);
+        }
         [Authorize]
         public async Task<IActionResult> Logout()
         {

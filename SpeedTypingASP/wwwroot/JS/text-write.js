@@ -19,9 +19,34 @@ for (var i = 0; i < inputString.length; i++, subCounter++) {
         subCounter = 0;
     }
 }
-if(subCounter > 1)
+if (subCounter > 1)
     correctStrings[correctStrings.length++] = inputString.substring(startOfString, inputString.length);
 
+for (var i = 0; i < correctStrings.length; i++) {
+    var startFlag = false;
+    var endFlag = false;
+
+    while (true) {
+        if (correctStrings[i].length > 0) {
+            var currentString = correctStrings[i];
+            if (currentString[0] === ' ' ||
+                currentString[0] === '\n')
+                correctStrings[i] = currentString.substring(1, currentString.length);
+            else
+                startFlag = true;
+            if (currentString[currentString.length - 1] === ' ' ||
+                currentString[currentString.length - 1] === '\n')
+                correctStrings[i] = currentString.substring(0, currentString.length - 1);
+            else
+                endFlag = true;
+        } else {
+            correctStrings.splice(i--, 1);
+            break;
+        }
+        if (startFlag && endFlag)
+            break;
+    }
+}
 
 var correctString;
 UpdateActualCorrectString();
@@ -30,6 +55,10 @@ var hasError = false;
 
 function UpdateActualCorrectString() {
     correctString = correctStrings[currentIdOfCurrentString++];
+    if (correctStrings.length === 0) {
+        document.location.href = "/";
+        return;
+    }
     if (currentIdOfCurrentString > correctStrings.length) {
         currentIdOfCurrentString = 0;
         UpdateActualCorrectString();

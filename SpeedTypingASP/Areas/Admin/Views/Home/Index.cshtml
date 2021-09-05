@@ -22,11 +22,10 @@
             <div class="text-selection__body">
                 <div class="text-selection__wrapper">
                     <div class="text-selection__header">
-                        <a
-                            asp-area="Admin"
-                            asp-controller="TextEdit"
-                            asp-action="Add"
-                            class="admin-panel__button">
+                        <a asp-area="Admin"
+                           asp-controller="TextEdit"
+                           asp-action="Add"
+                           class="admin-panel__button">
                             Добавить текст
                         </a>
                     </div>
@@ -39,23 +38,19 @@
                                     <h4 class="text-selection__item-text-name">
                                         @text.Title
                                     </h4>
-                                    <p class="text-selection__content">
-                                        @text.TextContent
-                                    </p>
-                                    <a
-                                        class="text-selection__button admin-panel__text-edit-button"
-                                        asp-area="Admin"
-                                        asp-controller="TextEdit"
-                                        asp-action="Edit"
-                                        asp-route-textName="@text.Title">
+                                    <p class="text-selection__content text-content">@text.TextContent</p>
+                                    <a class="text-selection__button admin-panel__text-edit-button"
+                                       asp-area="Admin"
+                                       asp-controller="TextEdit"
+                                       asp-action="Edit"
+                                       asp-route-textName="@text.Title">
                                         Редактировать
                                     </a>
-                                    <a
-                                        class="text-selection__button admin-panel__text-edit-button"
-                                        asp-area="Admin"
-                                        asp-controller="TextEdit"
-                                        asp-action="Delete"
-                                        asp-route-textName="@text.Title">
+                                    <a class="text-selection__button admin-panel__text-edit-button"
+                                       asp-area="Admin"
+                                       asp-controller="TextEdit"
+                                       asp-action="Delete"
+                                       asp-route-textName="@text.Title">
                                         Удалить
                                     </a>
                                 </div>
@@ -65,7 +60,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="admin-panel__users" id="admin-panel__users">
             <div class="admin-panel__user">
                 <div class="user__info-block">
@@ -101,3 +96,4 @@
     </div>
 </div>
 <script src="~/JS/admin-panel.js"></script>
+<script src="~/JS/text-output.js"></script>

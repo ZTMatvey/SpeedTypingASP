@@ -20,10 +20,13 @@
                     <div asp-validation-summary="All"></div>
                     <input asp-for="Title" value="@Model.Title" placeholder="Название текста"
                            class="text-edit__edit-title-input">
-                    <div placeholder="Text" class="text-edit__text-wrapper">
+                    <div class="text-edit__text-wrapper">
                         <textarea asp-for="TextContent" placeholder="Text" class="text-edit__textarea" id="text-edit__textarea">
                             @Model.TextContent
                         </textarea>
+                    </div>
+                    <div placeholder="Text" class="text-edit__text-wrapper">
+                        123
                     </div>
                     <button type="submit" class="admin-panel__button text-edit__save-changes-button">
                         Сохранить

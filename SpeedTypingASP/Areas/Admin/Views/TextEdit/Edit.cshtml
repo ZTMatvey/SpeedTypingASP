@@ -20,11 +20,24 @@
                     <div asp-validation-summary="All"></div>
                     <input asp-for="Title" value="@Model.Title"
                            class="text-edit__edit-title-input">
-                    <div placeholder="Text" class="text-edit__text-wrapper">
+                    <div class="text-edit__text-wrapper">
                         <textarea asp-for="TextContent" placeholder="Text" class="text-edit__textarea" id="text-edit__textarea">
                         @Model.TextContent
                     </textarea>
                     </div>
+                    <div placeholder="Text" class="text-edit__text-wrapper">
+                        <div class="text-edit__character-edit-wrapper" id="text-edit__character-edit-wrapper">
+
+                        </div>
+                        <div class="text-edit__character-edit-buttons">
+                            <div class="text-selection__button admin-panel__text-edit-button" id="add-text-to-change-btn">
+                                Добавить текст для изменения
+                            </div>
+                            <div class="text-selection__button admin-panel__text-edit-button" id="change-text-btn">
+                                Изменить
+                            </div>
+                        </div>
+                    </div>  
                     <button type="submit" class="admin-panel__button text-edit__save-changes-button">
                         Сохранить
                     </button>
@@ -34,3 +47,4 @@
     </div>
 </div>
 <script src="~/JS/text-edit.js"></script>
+<script src="~/JS/replace-characters.js"></script>

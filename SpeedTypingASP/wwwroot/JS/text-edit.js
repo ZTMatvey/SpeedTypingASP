@@ -1,5 +1,10 @@
-﻿const textarea = document.getElementById('text-edit__textarea');
-textarea.addEventListener('keyup', e => {
-    let scHeight = e.target.scrollHeight;
-    textarea.style.height = `${scHeight}px`;
+﻿const textEditTextarea = document.getElementById('text-edit__textarea');
+SetCorrectSizeOfTextArea();
+
+function SetCorrectSizeOfTextArea() {
+    let scHeight = textEditTextarea.scrollHeight;
+    textEditTextarea.style.height = `${scHeight}px`;
+}
+textEditTextarea.addEventListener('input', e => {
+    SetCorrectSizeOfTextArea();
 });

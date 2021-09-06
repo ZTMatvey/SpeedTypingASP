@@ -10,12 +10,12 @@ var startOfString = 0;
 for (var i = 0; i < inputString.length; i++, subCounter++) {
     if (inputString[i] === '\n') {
         correctStrings[correctStrings.length++] = inputString.substring(startOfString, i - 1);
-        startOfString = i + 1;
+        startOfString = i;
         subCounter = 0;
     }
     if (subCounter === 100) {
         correctStrings[correctStrings.length++] = inputString.substring(startOfString, i);
-        startOfString = i + 1;
+        startOfString = i;
         subCounter = 0;
     }
 }

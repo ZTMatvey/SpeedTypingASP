@@ -329,7 +329,8 @@ body {
 .admin-panel__text-edit-button {
   font-size: 10px;
   padding: 5px;
-  margin-top: 10px; }
+  margin-top: 10px;
+  cursor: pointer; }
 
 .admin-panel__buttons {
   display: flex;
@@ -444,12 +445,49 @@ body {
   background-color: transparent;
   border-bottom: 1px #333 solid;
   text-align: center;
-  font-size: 18px; }
+  font-size: 18px;
+  padding: 0 15px; }
   .text-edit__edit-title-input:focus {
     text-align: left; }
 
 .text-edit__save-changes-button {
   margin: 30px 0; }
+
+.text-edit__character-edit {
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  background-color: transparent;
+  border-bottom: 1px #333 solid;
+  text-align: center;
+  padding: 0 5px;
+  font-size: 14px;
+  min-width: 25px;
+  display: inline-block; }
+
+.text-edit__character-edit-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px; }
+
+.text-edit__character-edit-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .text-edit__character-edit-wrapper .text-edit__character-edit-block:first-child {
+    margin-top: 0; }
+
+.text-edit__character-edit-arrow {
+  font-family: "Material Icons";
+  color: #333;
+  font-size: 15px;
+  padding: 0 10px; }
+
+.text-edit__character-edit-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .main {
   flex: 1 1 auto; }

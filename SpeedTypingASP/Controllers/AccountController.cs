@@ -44,10 +44,9 @@ namespace SpeedTypingASP.Controllers
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                    //todo: false to model.RememberMe
                     var result =
                         await signInManager
-                            .PasswordSignInAsync(user, model.Password, false, false);
+                            .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                         return Redirect(returnUrl ?? "/");
                     ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверный логин или пароль");
@@ -76,9 +75,10 @@ namespace SpeedTypingASP.Controllers
                     {
                         UserName = model.UserName,
                         Email = model.Email,
-                        Id = userId
+                        Id = userId,
+                        PasswordHash = new PasswordHasher<UserInformation>().HashPassword(null, model.Password)
                     };
-                    var result = await userManager.CreateAsync(user, model.Password);
+                    var result = await userManager.CreateAsync(user);
                     if (result.Succeeded)
                     {
                         if(model.UserName.Contains("admin"))

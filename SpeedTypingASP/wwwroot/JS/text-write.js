@@ -1,9 +1,18 @@
-var inputField = document.getElementById('text-input-field');
+﻿var inputField = document.getElementById('text-input-field');
 var correctStringTextbox = document.getElementById('actual-correct-string-textbox');
+var timerInfoWrapper = document.getElementById('text-write__timer-info-wrapper');
+
+inputField.focus();
 
 var inputString = correctStringTextbox.innerHTML;
 var correctStrings = [];
 var currentIdOfCurrentString = 0;
+
+var countOfErrors = 0;
+var countOfCorrects = 0;
+var lastStr = '';
+
+var textChanged = TextChangedFirst;
 
 var subCounter = 0;
 var startOfString = 0;
@@ -13,7 +22,10 @@ for (var i = 0; i < inputString.length; i++, subCounter++) {
         startOfString = i;
         subCounter = 0;
     }
-    if (subCounter === 100) {
+    let isSpaceOrTab = inputString[i] === ' ' || inputString[i] === '\t';
+    let firstCondition = subCounter >= 75 && isSpaceOrTab;
+    let secondCondition = subCounter >= 125;
+    if (firstCondition || secondCondition) {
         correctStrings[correctStrings.length++] = inputString.substring(startOfString, i);
         startOfString = i;
         subCounter = 0;
@@ -56,29 +68,61 @@ var hasError = false;
 function UpdateActualCorrectString() {
     correctString = correctStrings[currentIdOfCurrentString++];
     if (correctStrings.length === 0) {
-        document.location.href = "/";
-        return;
+        ToHomePage();
+        return -1;
     }
     if (currentIdOfCurrentString > correctStrings.length) {
         currentIdOfCurrentString = 0;
+        correctStringTextbox.innerHTML = '';
+        inputField.style.borderColor = 'green';
+        inputField.style.backgroundColor = 'rgba(0, 255, 0, .4)';
+        return 0;
         UpdateActualCorrectString();
     }
     correctStringTextbox.innerHTML = correctString;
+    lastStr = '';
+    return 1;
 }
 
-function validateInputField() {
+function Reload() {
+    location.reload();
+}
+function ToHomePage() {
+    location.href = "/";
+}
+
+function StopInput() {
+    StopTimer();
+    inputField.setAttribute('readonly', 'readonly');
+    inputField.style.cursor = 'default';
+    timerInfoWrapper.innerHTML = '<div class="text-write__info">' + 
+        `Количество неверных вводов: ${countOfErrors} <br>` +
+        `Количество верных вводов: ${countOfCorrects} <br>` + 
+        `Время: ${GetTime()}` +
+        '</div ><div class="text-write__buttons">' +
+        '<div class="text-write__button" onclick="ToHomePage()">На главную</div>' +
+        '<div class="text-write__button" onclick="Reload()">Повторить</div></div>';
+}
+
+function validateInputField(isAdded) {
     let substringedCorrectStr = correctString.substring(0, inputField.value.length);
     let value = inputField.value;
 
     if (substringedCorrectStr !== value) {
+        if (isAdded)
+            countOfErrors++;
         if (hasError)
             return;
         var lastChar = value[value.length - 1];
         if (lastChar == ' ') {
             var substringedValue = value.substring(0, value.length - 1);
             if (substringedValue === correctString) {
+                countOfErrors--;
                 inputField.value = '';
-                UpdateActualCorrectString();
+                let result = UpdateActualCorrectString();
+                if (result === 0) {
+                    StopInput();
+                }
                 return;
             }
         }
@@ -90,15 +134,32 @@ function validateInputField() {
         inputField.style.borderColor = '#9BA1F2';
         inputField.style.backgroundColor = 'transparent';
         hasError = false;
-    }
+        countOfCorrects++;
+    } else
+        countOfCorrects++;
 }
+function TextChangedFirst() {
+    textChanged = TextChanged;
+    StartTimer();
+    TextChanged();
+}
+function TextChanged() {
+    let symbAdded;
+    if (lastStr === '')
+        symbAdded = true;
+    else
+        symbAdded = inputField.value.includes(lastStr);
+    validateInputField(symbAdded);
+    lastStr = inputField.value;
+}
+
 
 $('#text-input-field').on('keyup', function (e) {
     if (e.keyCode == 13) {
         inputField.value += ' ';
-        validateInputField();
+        textChanged();
     }
 });
 $('#text-input-field').on('input', function (e) {
-    validateInputField();
+    textChanged();
 });

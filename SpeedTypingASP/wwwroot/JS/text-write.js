@@ -1,6 +1,7 @@
 ﻿var inputField = document.getElementById('text-input-field');
 var correctStringTextbox = document.getElementById('actual-correct-string-textbox');
 var timerInfoWrapper = document.getElementById('text-write__timer-info-wrapper');
+var textTitleElement = document.getElementById('text-write__text-title');
 
 inputField.focus();
 
@@ -65,6 +66,14 @@ UpdateActualCorrectString();
 
 var hasError = false;
 
+function SendFormRequestOfEnd() {
+    const form = document.getElementById('text-write__resultForm');
+
+    form.setAttribute('action', `/Home/TextWriteResult?textTitle=${textTitleElement.innerHTML}&countOfErrors=${countOfErrors}&countOfCorrects=${countOfCorrects}&time=${GetNumTime()}&textUrl=${location.href}`);
+
+    form.submit();
+}
+
 function UpdateActualCorrectString() {
     correctString = correctStrings[currentIdOfCurrentString++];
     if (correctStrings.length === 0) {
@@ -93,15 +102,15 @@ function ToHomePage() {
 
 function StopInput() {
     StopTimer();
-    inputField.setAttribute('readonly', 'readonly');
-    inputField.style.cursor = 'default';
-    timerInfoWrapper.innerHTML = '<div class="text-write__info">' + 
-        `Количество неверных вводов: ${countOfErrors} <br>` +
-        `Количество верных вводов: ${countOfCorrects} <br>` + 
-        `Время: ${GetTime()}` +
-        '</div ><div class="text-write__buttons">' +
-        '<div class="text-write__button" onclick="ToHomePage()">На главную</div>' +
-        '<div class="text-write__button" onclick="Reload()">Повторить</div></div>';
+    //inputField.setAttribute('readonly', 'readonly');
+    //inputField.style.cursor = 'default';
+    //timerInfoWrapper.innerHTML = '<div class="text-write__info">' +
+    //    `Количество неверных вводов: ${countOfErrors} <br>` +
+    //    `Количество верных вводов: ${countOfCorrects} <br>` +
+    //    `Время: ${GetTime()}` +
+    //    '</div ><div class="text-write__buttons">' +
+    //    '<div class="text-write__button" onclick="ToHomePage()">На главную</div>' +
+    //    '<div class="text-write__button" onclick="Reload()">Повторить</div></div>';
 }
 
 function validateInputField(isAdded) {
@@ -122,6 +131,7 @@ function validateInputField(isAdded) {
                 let result = UpdateActualCorrectString();
                 if (result === 0) {
                     StopInput();
+                    SendFormRequestOfEnd();
                 }
                 return;
             }

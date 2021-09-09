@@ -1,5 +1,16 @@
 ﻿@model Text
 
+<div style="display: none;" id="text-write__text-title">@Model.Title</div>
+<form
+asp-controller="Home"
+asp-action="TextWriteResult"
+method="post"
+asp-route-textTitle="1"
+asp-route-countOfErrors="1"
+asp-route-countOfCorrects="1"
+asp-route-textUrl="1"
+id="text-write__resultForm"
+></form>
 <div class="text-write">
     <div class="container">
         <div class="text-write-body">

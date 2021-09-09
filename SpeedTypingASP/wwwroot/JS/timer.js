@@ -32,6 +32,9 @@ function GetTime() {
     strSeconds = seconds < 10 ? `0${seconds}` : seconds;
     return `${minutes}:${strSeconds}.${strMiliSeconds}`;
 }
+function GetNumTime() {
+    return (minutes * 60 + seconds) * 100 + miliSeconds;
+}
 function StopTimer() {
     clearInterval(interval);
 }

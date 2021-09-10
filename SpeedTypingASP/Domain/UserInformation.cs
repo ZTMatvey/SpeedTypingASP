@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace SpeedTypingASP.Domain
 {
     public class UserInformation : IdentityUser
     {
-        private string JsonTextsStatistics { get; set; }
+        public string JsonTextsStatistics { get; set; }
 
-        public TextStatistics UpdateTextStatisticsAndGetBestStatistics(TextStatistics textStatistics)
+        public TextStatistics SetTextStatisticsAndGetBestStatistics(TextStatistics textStatistics)
         {
             var textsStatistics = JsonConvert.DeserializeObject<List<TextStatistics>>(JsonTextsStatistics ?? "") ?? new List<TextStatistics>();
             var currentTextStatistics = textsStatistics.FirstOrDefault(x => x.TextId == textStatistics.TextId);
@@ -30,8 +31,6 @@ namespace SpeedTypingASP.Domain
             }
 
             JsonTextsStatistics = JsonConvert.SerializeObject(textsStatistics);
-            ApplicationDbContext.GetDbContext().SaveChanges();
-
             return currentTextStatistics;
         }
     }

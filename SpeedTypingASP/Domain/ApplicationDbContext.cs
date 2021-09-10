@@ -12,19 +12,7 @@ namespace SpeedTypingASP.Domain
 {
     public class ApplicationDbContext: IdentityDbContext<UserInformation>
     {
-        private static ApplicationDbContext _applicationDbContext;
-
-        public static ApplicationDbContext GetDbContext()
-        {
-            if (_applicationDbContext == null)
-                throw new Exception("Не определен контекст базы данных");
-            return _applicationDbContext;
-        }
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-            _applicationDbContext = this;
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
 
         public DbSet<Text> Texts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

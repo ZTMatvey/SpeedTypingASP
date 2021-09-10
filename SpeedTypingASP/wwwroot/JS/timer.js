@@ -7,6 +7,14 @@ var strMiliSeconds;
 var strSeconds;
 var interval;
 
+
+function GetTimeFromDivTenMilSeconds(divTenMiliseconds) {
+    let _seconds = Math.floor(divTenMiliseconds / 100);
+    let _minutes = Math.floor(seconds / 60);
+    _seconds %= 100;
+    divTenMiliseconds %= 100;
+    return `${_minutes}:${_seconds}.${divTenMiliseconds}`;
+}
 function StartTimer() {
 
     strMiliSeconds = miliSeconds < 10 ? `0${miliSeconds}` : miliSeconds;

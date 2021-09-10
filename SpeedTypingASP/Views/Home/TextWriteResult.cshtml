@@ -1,28 +1,50 @@
 ﻿@model TextWriteResultViewModel
 
 <div class="text-write">
+    <input value="@Model.BestTextStatistics" id="BestTextStatisticsInput" type="hidden"/>
+    <input value="@Model.CurrentTextStatistics.MinMiliseconds" id="CurrentTextStatisticsSeconds" type="hidden"/>
+    @if (Model.BestTextStatistics != null)
+    {
+        <input value="@Model.BestTextStatistics.MinMiliseconds" id="BestTextStatisticsSeconds" type="hidden"/>
+    }
     <div class="container">
         <div class="text-write__timer-info-wrapper" id="text-write__timer-info-wrapper">
             @if (Model.BestTextStatistics == null)
             {
-                <div class="text-write__info">
+                <div class="text-write__info" id="text-write__info">
                     Количество неверных вводов: @Model.CurrentTextStatistics.MinCountOfErrors<br>
                     Количество верных вводов: @Model.CurrentTextStatistics.MaxCountOfCorrects<br>
-                    Время: @Model.CurrentTextStatistics.MinMiliseconds
                 </div>
             }
             else
             {
-                <div class="text-write__info">
+                <div class="text-write__info" id="text-write__info">
                     Количество неверных вводов: @Model.CurrentTextStatistics.MinCountOfErrors (Лучшее: @Model.BestTextStatistics.MinCountOfErrors) <br>
                     Количество верных вводов: @Model.CurrentTextStatistics.MaxCountOfCorrects (Лучшее: @Model.BestTextStatistics.MaxCountOfCorrects)<br>
-                    Время: @Model.CurrentTextStatistics.MinMiliseconds (Лучшее: @Model.BestTextStatistics.MinMiliseconds)
                 </div>
             }
             <div class="text-write__buttons">
                 <a class="text-write__button" href="/">На главную</a>
-                <div class="text-write__button" onclick="Reload()">Повторить</div>
+                <a asp-action="TextWrite" asp-route-textTitle="@Model.TextTitle" class="text-write__button">Повторить</a>
             </div>
         </div>
     </div>
 </div>
+<script src="~/JS/timer.js"></script>
+<script>
+    let BestTextStatisticsInput = document.getElementById('BestTextStatisticsInput');
+    let CurrentTextStatisticsSeconds = document.getElementById('CurrentTextStatisticsSeconds');
+    let BestTextStatisticsSeconds = document.getElementById('BestTextStatisticsSeconds');
+    let textWriteInfo = document.getElementById('text-write__info');
+
+    if (BestTextStatisticsInput.value === '') {
+        textWriteInfo.innerHTML += `Время: ${GetTimeFromDivTenMilSeconds(parseInt(CurrentTextStatisticsSeconds.value))}`;
+    } else {
+        textWriteInfo.innerHTML += `Время: ${GetTimeFromDivTenMilSeconds(parseInt(CurrentTextStatisticsSeconds.value))}  
+                            (Лучшее: ${GetTimeFromDivTenMilSeconds(parseInt(BestTextStatisticsSeconds.value))})`;
+    }
+
+    function Reload(url) {
+        location.href = url;
+    }
+</script>

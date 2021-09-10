@@ -69,7 +69,7 @@ var hasError = false;
 function SendFormRequestOfEnd() {
     const form = document.getElementById('text-write__resultForm');
 
-    form.setAttribute('action', `/Home/TextWriteResult?textTitle=${textTitleElement.innerHTML}&countOfErrors=${countOfErrors}&countOfCorrects=${countOfCorrects}&time=${GetNumTime()}&textUrl=${location.href}`);
+    form.setAttribute('action', `/Home/TextWriteResult?textTitle=${textTitleElement.innerHTML}&countOfErrors=${countOfErrors}&countOfCorrects=${countOfCorrects}&time=${GetNumTime()}`);
 
     form.submit();
 }
@@ -102,15 +102,7 @@ function ToHomePage() {
 
 function StopInput() {
     StopTimer();
-    //inputField.setAttribute('readonly', 'readonly');
-    //inputField.style.cursor = 'default';
-    //timerInfoWrapper.innerHTML = '<div class="text-write__info">' +
-    //    `Количество неверных вводов: ${countOfErrors} <br>` +
-    //    `Количество верных вводов: ${countOfCorrects} <br>` +
-    //    `Время: ${GetTime()}` +
-    //    '</div ><div class="text-write__buttons">' +
-    //    '<div class="text-write__button" onclick="ToHomePage()">На главную</div>' +
-    //    '<div class="text-write__button" onclick="Reload()">Повторить</div></div>';
+    MakeTimerGreen();
 }
 
 function validateInputField(isAdded) {
@@ -144,7 +136,6 @@ function validateInputField(isAdded) {
         inputField.style.borderColor = '#9BA1F2';
         inputField.style.backgroundColor = 'transparent';
         hasError = false;
-        countOfCorrects++;
     } else
         countOfCorrects++;
 }

@@ -40,8 +40,7 @@ namespace SpeedTypingASP.Controllers
             string textTitle, 
             string countOfErrors,
             string countOfCorrects,
-            string time,
-            string textUrl)
+            string time)
         {
             var text = dataManager.Texts.GetTextByName(textTitle);
             var textStatistics = new TextStatistics()
@@ -52,13 +51,17 @@ namespace SpeedTypingASP.Controllers
                 MinMiliseconds = int.Parse(time)
             };
 
-            var resultViewModel = new TextWriteResultViewModel() { CurrentTextStatistics = textStatistics};
+            var resultViewModel = new TextWriteResultViewModel() { CurrentTextStatistics = textStatistics, TextTitle = textTitle };
 
             if(signInManager.IsSignedIn(User))
             {
                 var user = await userManager.GetUserAsync(User);
-                var bestStatistics = user.UpdateTextStatisticsAndGetBestStatistics(textStatistics);
+                var bestStatistics = user.SetTextStatisticsAndGetBestStatistics(textStatistics);
                 resultViewModel.BestTextStatistics = bestStatistics;
+                var result = await userManager.UpdateAsync(user);
+                if(!result.Succeeded)
+                    resultViewModel.BestTextStatistics = null;
+
             }
             return View(resultViewModel);
         }

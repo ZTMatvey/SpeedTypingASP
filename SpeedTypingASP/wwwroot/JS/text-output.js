@@ -7,7 +7,6 @@ function ValidateTextContent(elem) {
     var text = elem.innerHTML;
 
     if (text.length > 100) {
-        console.log('substringed');
         text = text.substring(0, 100);
         elem.innerHTML = `${text}...`;
     }

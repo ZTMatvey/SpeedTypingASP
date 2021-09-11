@@ -72,9 +72,7 @@
 }
 
 .user__info-block {
-    display: flex;
-    align-items: center;
-    margin-top: 3px;
+    margin-top: 15px;
 }
 
 .user__info-type {
@@ -84,9 +82,14 @@
     font-size: 18px;
 }
 
+.user__info-content {
+    font-family: $main-font-family;
+    color: $main-text-color;
+    font-size: 16px;
+}
+
 .user__text {
     font-family: $main-font-family;
     color: $main-text-color;
     font-size: 18px;
-    margin-left: 5px;
 }

@@ -22,7 +22,7 @@ function AddCharactersToReplace() {
     wrapper.innerHTML += currentReplace;
 }
 function ChangeText() {
-    let textareaContent = textEditTextareaForReplceChars.innerHTML;
+    let textareaContent = textEditTextareaForReplceChars.value;
     for (let i = 0; i < countOfReplacements; i++) {
         let from = document.getElementById(`text-edit__character-edit-from-${i}`).innerHTML;
         let to = document.getElementById(`text-edit__character-edit-to-${i}`).innerHTML;
@@ -31,5 +31,5 @@ function ChangeText() {
 
         textareaContent = textareaContent.replaceAll(regExp, to);
     }
-    textEditTextareaForReplceChars.innerHTML = textareaContent;
+    textEditTextareaForReplceChars.value = textareaContent;
 }

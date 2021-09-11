@@ -1,5 +1,8 @@
 ﻿@model Text
-
+@{
+    var strTitle = "Набор текста";
+    ViewBag.Title = strTitle;
+}
 <div style="display: none;" id="text-write__text-title">@Model.Title</div>
 <form
 asp-controller="Home"

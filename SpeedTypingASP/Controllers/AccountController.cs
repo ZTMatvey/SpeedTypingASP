@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using SpeedTypingASP.Domain;
 using SpeedTypingASP.Models;
-using SpeedTypingASP.Service;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+using SpeedTypingASP.Service; 
 
 namespace SpeedTypingASP.Controllers
 {

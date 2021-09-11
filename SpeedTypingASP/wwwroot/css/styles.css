@@ -424,9 +424,7 @@ body {
     margin-top: 0; }
 
 .user__info-block {
-  display: flex;
-  align-items: center;
-  margin-top: 3px; }
+  margin-top: 15px; }
 
 .user__info-type {
   font-family: "Roboto", sans-serif;
@@ -434,11 +432,15 @@ body {
   font-weight: 700;
   font-size: 18px; }
 
+.user__info-content {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 16px; }
+
 .user__text {
   font-family: "Roboto", sans-serif;
   color: #333;
-  font-size: 18px;
-  margin-left: 5px; }
+  font-size: 18px; }
 
 .text-edit {
   height: 100%; }

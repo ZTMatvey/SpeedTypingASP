@@ -1,4 +1,9 @@
 ﻿@model LoginViewModel
+@{
+    var strTitle = "Вход";
+    ViewBag.Title = strTitle;
+}
+
 <div class="auth">
     <div class="container">
         <div class="auth___container">
@@ -9,7 +14,8 @@
                       asp-action="Login"
                       method="post"
                       asp-route-returnUrl="@ViewBag.returnUrl"
-                      class="auth__form">
+                      class="auth__form"
+                      autocomplete="off">
                     <div asp-validation-summary="All"></div>
 
                     <input asp-for="UserName" class="auth__input-text" placeholder="Логин">

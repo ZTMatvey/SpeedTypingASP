@@ -1,5 +1,9 @@
-﻿@inject UserManager<UserInformation> UserManager
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@inject UserManager<UserInformation> UserManager
 @inject SignInManager<UserInformation> SignInManager
+@{
+    var request = Context.Request;
+}
 <header class="header">
     <div class="container">
         <div class="header__top">
@@ -30,12 +34,14 @@
                 {
                     <a class="sign-button"
                        asp-controller="Account"
-                       asp-action="Login">
+                       asp-action="Login"
+                       asp-route-returnUrl="@request.GetDisplayUrl()">
                         Вход
                     </a>
                     <a class="sign-button"
                        asp-controller="Account"
-                       asp-action="Register">
+                       asp-action="Register"
+                       asp-route-returnUrl="@request.GetDisplayUrl()">
                         Регистрация
                     </a>
                 }

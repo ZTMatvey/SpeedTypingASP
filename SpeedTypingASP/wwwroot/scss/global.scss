@@ -1,6 +1,7 @@
 body{
     background: $main-bg-color;
     font-family: $main-font-family;
+    overflow-y: hidden;
 }
 
 .container{

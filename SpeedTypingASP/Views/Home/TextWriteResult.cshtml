@@ -2,25 +2,27 @@
 
 <div class="text-write">
     <input value="@Model.BestTextStatistics" id="BestTextStatisticsInput" type="hidden"/>
-    <input value="@Model.CurrentTextStatistics.MinMiliseconds" id="CurrentTextStatisticsSeconds" type="hidden"/>
+    <input value="@Model.CurrentTextStatistics.Miliseconds" id="CurrentTextStatisticsSeconds" type="hidden"/>
+    <input value="@Model.CurrentTextStatistics.CharactersPerMinute" id="CurrentTextStatisticsCharactersPerMinute" type="hidden"/>
     @if (Model.BestTextStatistics != null)
     {
-        <input value="@Model.BestTextStatistics.MinMiliseconds" id="BestTextStatisticsSeconds" type="hidden"/>
+        <input value="@Model.BestTextStatistics.Miliseconds" id="BestTextStatisticsSeconds" type="hidden"/>
+        <input value="@Model.BestTextStatistics.CharactersPerMinute" id="BestTextStatisticsCharactersPerMinute" type="hidden"/>
     }
     <div class="container">
         <div class="text-write__timer-info-wrapper" id="text-write__timer-info-wrapper">
             @if (Model.BestTextStatistics == null)
             {
                 <div class="text-write__info" id="text-write__info">
-                    Количество неверных вводов: @Model.CurrentTextStatistics.MinCountOfErrors<br>
-                    Количество верных вводов: @Model.CurrentTextStatistics.MaxCountOfCorrects<br>
+                    Количество неверных вводов: @Model.CurrentTextStatistics.CountOfErrors
+                    @*<br>Количество верных вводов: @Model.CurrentTextStatistics.CountOfCorrects*@
                 </div>
             }
             else
             {
                 <div class="text-write__info" id="text-write__info">
-                    Количество неверных вводов: @Model.CurrentTextStatistics.MinCountOfErrors (Лучшее: @Model.BestTextStatistics.MinCountOfErrors) <br>
-                    Количество верных вводов: @Model.CurrentTextStatistics.MaxCountOfCorrects (Лучшее: @Model.BestTextStatistics.MaxCountOfCorrects)<br>
+                    Количество неверных вводов: @Model.CurrentTextStatistics.CountOfErrors (Лучшее: @Model.BestTextStatistics.CountOfErrors)
+                    @*<br>Количество верных вводов: @Model.CurrentTextStatistics.CountOfCorrects (Лучшее: @Model.BestTextStatistics.CountOfCorrects)*@
                 </div>
             }
             <div class="text-write__buttons">
@@ -33,18 +35,26 @@
 <script src="~/JS/timer.js"></script>
 <script>
     let BestTextStatisticsInput = document.getElementById('BestTextStatisticsInput');
+
     let CurrentTextStatisticsSeconds = document.getElementById('CurrentTextStatisticsSeconds');
     let BestTextStatisticsSeconds = document.getElementById('BestTextStatisticsSeconds');
+
+    let CurrentTextStatisticsCharactersPerMinute = document.getElementById('CurrentTextStatisticsCharactersPerMinute');
+    let BestTextStatisticsCharactersPerMinute = document.getElementById('BestTextStatisticsCharactersPerMinute');
+
     let textWriteInfo = document.getElementById('text-write__info');
 
-    if (BestTextStatisticsInput.value === '') {
-        textWriteInfo.innerHTML += `Время: ${GetTimeFromDivTenMilSeconds(parseInt(CurrentTextStatisticsSeconds.value))}`;
-    } else {
-        textWriteInfo.innerHTML += `Время: ${GetTimeFromDivTenMilSeconds(parseInt(CurrentTextStatisticsSeconds.value))}  
-                            (Лучшее: ${GetTimeFromDivTenMilSeconds(parseInt(BestTextStatisticsSeconds.value))})`;
-    }
+    let CurrentTimeValue = parseInt(CurrentTextStatisticsSeconds.value);
+    let BestTimeValue = parseInt(BestTextStatisticsSeconds.value);
 
-    function Reload(url) {
-        location.href = url;
+
+    if (BestTextStatisticsInput.value === '') {
+        textWriteInfo.innerHTML += `<br>Время: ${GetTimeFromDivTenMilSeconds(CurrentTimeValue)}`;
+        textWriteInfo.innerHTML += `<br>CPM: ${CurrentTextStatisticsCharactersPerMinute.value}`;
+    } else {
+        textWriteInfo.innerHTML += `<br>Время: ${GetTimeFromDivTenMilSeconds(CurrentTimeValue)}  
+                                    (Лучшее: ${GetTimeFromDivTenMilSeconds(BestTimeValue)})`;
+        textWriteInfo.innerHTML += `<br>CPM: ${CurrentTextStatisticsCharactersPerMinute.value}
+                                    (Лучшее: ${BestTextStatisticsCharactersPerMinute.value})`;
     }
 </script>

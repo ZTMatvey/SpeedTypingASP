@@ -22,12 +22,14 @@ namespace SpeedTypingASP.Domain
             }
             else
             {
-                if (textStatistics.MaxCountOfCorrects > currentTextStatistics.MaxCountOfCorrects)
-                    currentTextStatistics.MaxCountOfCorrects = textStatistics.MaxCountOfCorrects;
-                if (textStatistics.MinCountOfErrors < currentTextStatistics.MinCountOfErrors)
-                    currentTextStatistics.MinCountOfErrors = textStatistics.MinCountOfErrors;
-                if (textStatistics.MinMiliseconds < currentTextStatistics.MinMiliseconds)
-                    currentTextStatistics.MinMiliseconds = textStatistics.MinMiliseconds;
+                if (textStatistics.CountOfCorrects > currentTextStatistics.CountOfCorrects)
+                    currentTextStatistics.CountOfCorrects = textStatistics.CountOfCorrects;
+                if (textStatistics.CountOfErrors < currentTextStatistics.CountOfErrors)
+                    currentTextStatistics.CountOfErrors = textStatistics.CountOfErrors;
+                if (textStatistics.Miliseconds < currentTextStatistics.Miliseconds)
+                    currentTextStatistics.Miliseconds = textStatistics.Miliseconds;
+                if (textStatistics.CharactersPerMinute > currentTextStatistics.CharactersPerMinute)
+                    currentTextStatistics.CharactersPerMinute = textStatistics.CharactersPerMinute;
             }
 
             JsonTextsStatistics = JsonConvert.SerializeObject(textsStatistics);

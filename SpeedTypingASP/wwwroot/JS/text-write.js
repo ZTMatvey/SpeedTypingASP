@@ -12,6 +12,7 @@ var currentIdOfCurrentString = 0;
 var countOfErrors = 0;
 var countOfCorrects = 0;
 var lastStr = '';
+var maxCountOfCorrectsInLine = 0;
 
 var textChanged = TextChangedFirst;
 
@@ -90,6 +91,7 @@ function UpdateActualCorrectString() {
     }
     correctStringTextbox.innerHTML = correctString;
     lastStr = '';
+    maxCountOfCorrectsInLine = 0;
     return 1;
 }
 
@@ -136,8 +138,10 @@ function validateInputField(isAdded) {
         inputField.style.borderColor = '#9BA1F2';
         inputField.style.backgroundColor = 'transparent';
         hasError = false;
-    } else
+    } else if (value.length > maxCountOfCorrectsInLine) {
+        maxCountOfCorrectsInLine++;
         countOfCorrects++;
+    }
 }
 function TextChangedFirst() {
     textChanged = TextChanged;

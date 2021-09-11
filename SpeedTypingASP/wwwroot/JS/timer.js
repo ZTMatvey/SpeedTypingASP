@@ -10,10 +10,12 @@ var interval;
 
 function GetTimeFromDivTenMilSeconds(divTenMiliseconds) {
     let _seconds = Math.floor(divTenMiliseconds / 100);
-    let _minutes = Math.floor(seconds / 60);
-    _seconds %= 100;
-    divTenMiliseconds %= 100;
-    return `${_minutes}:${_seconds}.${divTenMiliseconds}`;
+    let _minutes = Math.floor(_seconds / 60);
+    _seconds %= 60;
+    let _miliSecs = divTenMiliseconds % 100;
+    _seconds = _seconds < 10 ? `0${_seconds}` : _seconds;
+    _miliSecs = _miliSecs < 10 ? `0${_miliSecs}` : _miliSecs;
+    return `${_minutes}:${_seconds}.${_miliSecs}`;
 }
 function StartTimer() {
 

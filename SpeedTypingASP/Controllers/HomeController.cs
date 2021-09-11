@@ -43,12 +43,20 @@ namespace SpeedTypingASP.Controllers
             string time)
         {
             var text = dataManager.Texts.GetTextByName(textTitle);
+            var miliseconds = int.Parse(time);
+            var minutes = miliseconds / 6000d;
+            var errors = int.Parse(countOfErrors);
+            var corrects = int.Parse(countOfCorrects);
+
+
+            //todo проверка minutes на 0
             var textStatistics = new TextStatistics()
             {
-                MinCountOfErrors = int.Parse(countOfErrors),
-                MaxCountOfCorrects = int.Parse(countOfCorrects),
+                CountOfErrors = errors,
+                CountOfCorrects = corrects,
                 TextId = text.Id,
-                MinMiliseconds = int.Parse(time)
+                Miliseconds = miliseconds,
+                CharactersPerMinute = Math.Round(corrects / (minutes == 0 ? .0001d : minutes), 4)
             };
 
             var resultViewModel = new TextWriteResultViewModel() { CurrentTextStatistics = textStatistics, TextTitle = textTitle };

@@ -10,8 +10,9 @@ namespace SpeedTypingASP.Domain
     public class TextStatistics
     {
         public string TextId { get; set; }
-        public int MinCountOfErrors { get; set; }
-        public int MaxCountOfCorrects { get; set; }
-        public int MinMiliseconds { get; set; }
+        public int CountOfErrors { get; set; }
+        public int CountOfCorrects { get; set; }
+        public int Miliseconds { get; set; }
+        public double CharactersPerMinute { get; set; }
     }
 }

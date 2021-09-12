@@ -1,0 +1,16 @@
+﻿.error__block
+{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error__content {
+    color: $main-text-color;
+    font-family: $headings-font-family;
+    width: 100%;
+    max-width: 50vw;
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 100px;
+}

@@ -104,6 +104,7 @@ function ToHomePage() {
 
 function StopInput() {
     StopTimer();
+    StopCpmTimer();
     MakeTimerGreen();
 }
 
@@ -141,11 +142,13 @@ function validateInputField(isAdded) {
     } else if (value.length > maxCountOfCorrectsInLine) {
         maxCountOfCorrectsInLine++;
         countOfCorrects++;
+        correctInLastPartOfTime++;
     }
 }
 function TextChangedFirst() {
     textChanged = TextChanged;
     StartTimer();
+    StartCpmTimer();
     TextChanged();
 }
 function TextChanged() {

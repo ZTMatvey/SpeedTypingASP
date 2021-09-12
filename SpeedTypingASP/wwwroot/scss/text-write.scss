@@ -23,6 +23,16 @@
     text-align: center;
     user-select: none;
 }
+.text-write__cpm-text {
+    font-family: $main-font-family;
+    color: $sub-text-color;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    padding-bottom: 5px;
+}
 .text-write__timer-text {
     font-family: $main-font-family;
     color: $sub-text-color;
@@ -32,6 +42,7 @@
     align-items: center;
     padding: 0 50px;
     border-bottom: 2px $sub-bg-color solid;
+    border-top: 2px $sub-bg-color solid;
     user-select: none;
 }
 .text-write__timer-info-wrapper {

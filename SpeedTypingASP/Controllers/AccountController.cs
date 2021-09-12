@@ -77,10 +77,7 @@ namespace SpeedTypingASP.Controllers
                     var result = await userManager.CreateAsync(user);
                     if (result.Succeeded)
                     {
-                        if(model.UserName.Contains("admin"))
-                            await userManager.AddToRoleAsync(user, "admin");
-                        else
-                            await userManager.AddToRoleAsync(user, "user");
+                        await userManager.AddToRoleAsync(user, "user");
                         await signInManager
                                 .PasswordSignInAsync(user, model.Password, false, false);
                         return Redirect(returnUrl ?? "/");

@@ -76,6 +76,11 @@ namespace SpeedTypingASP
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

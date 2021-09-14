@@ -4,8 +4,10 @@
 @import "admin-panel.scss";
 @import "text-edit.scss";
 @import "error.scss";
+@import "personal-account.scss";
 
 .main{
     flex: 1 1 auto;
     overflow-y: auto;
+    height: 100%;
 }

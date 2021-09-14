@@ -10,9 +10,15 @@ namespace SpeedTypingASP.Domain
     {
         public string JsonTextsStatistics { get; set; }
 
+        public List<TextStatistics> GetTextsStatistics()
+        {
+            var textsStatistics = DeserializeTextStatisticsAndGetIt();
+            return textsStatistics;
+        }
+
         public TextStatistics SetTextStatisticsAndGetBestStatistics(TextStatistics textStatistics)
         {
-            var textsStatistics = JsonConvert.DeserializeObject<List<TextStatistics>>(JsonTextsStatistics ?? "") ?? new List<TextStatistics>();
+            var textsStatistics = DeserializeTextStatisticsAndGetIt();
             var currentTextStatistics = textsStatistics.FirstOrDefault(x => x.TextId == textStatistics.TextId);
 
             if (currentTextStatistics == null)
@@ -22,6 +28,8 @@ namespace SpeedTypingASP.Domain
             }
             else
             {
+                if (string.IsNullOrEmpty(currentTextStatistics.TextTitle))
+                    currentTextStatistics.TextTitle = textStatistics.TextTitle;
                 if (textStatistics.CountOfCorrects > currentTextStatistics.CountOfCorrects)
                     currentTextStatistics.CountOfCorrects = textStatistics.CountOfCorrects;
                 if (textStatistics.CountOfErrors < currentTextStatistics.CountOfErrors)
@@ -32,8 +40,24 @@ namespace SpeedTypingASP.Domain
                     currentTextStatistics.CharactersPerMinute = textStatistics.CharactersPerMinute;
             }
 
-            JsonTextsStatistics = JsonConvert.SerializeObject(textsStatistics);
+            SerializeTextStatistics(textsStatistics);
             return currentTextStatistics;
+        }
+
+        public void RemoveTextStatisticsByName(string textTitle)
+        {
+            var textsStatistics = GetTextsStatistics();
+            textsStatistics = textsStatistics.Where(x => x.TextTitle != textTitle).ToList();
+            SerializeTextStatistics(textsStatistics);
+        }
+        private void SerializeTextStatistics(List<TextStatistics> textsStatistics)
+        {
+            JsonTextsStatistics = JsonConvert.SerializeObject(textsStatistics);
+        }
+        private List<TextStatistics> DeserializeTextStatisticsAndGetIt()
+        {
+            var textsStatistics = JsonConvert.DeserializeObject<List<TextStatistics>>(JsonTextsStatistics ?? "") ?? new List<TextStatistics>();
+            return textsStatistics;
         }
     }
 }

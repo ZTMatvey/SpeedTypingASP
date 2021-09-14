@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -82,9 +83,8 @@ namespace SpeedTypingASP.Controllers
                                 .PasswordSignInAsync(user, model.Password, false, false);
                         return Redirect(returnUrl ?? "/");
                     }
-                    else
-                        foreach (var error in result.Errors)
-                            ModelState.AddModelError("", error.Description);
+                    foreach (var error in result.Errors)
+                        ModelState.AddModelError("", error.Description);
                 }
                 if (model.Password != model.ConfirmedPassword)
                     ModelState.AddModelError(nameof(RegisterViewModel.Password), "Пароли не совпадают");
@@ -95,6 +95,28 @@ namespace SpeedTypingASP.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+        [Authorize]
+        public async Task<IActionResult> PersonalAccount()
+        {
+            if(signInManager.IsSignedIn(User))
+            {
+                var user = await userManager.GetUserAsync(User);
+                return View(user);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveTextStatistics(string textTitle)
+        {
+            if (signInManager.IsSignedIn(User))
+            {
+                var user = await userManager.GetUserAsync(User);
+                user.RemoveTextStatisticsByName(textTitle);
+                await userManager.UpdateAsync(user);
+                return View("PersonalAccount", user);
+            }
             return RedirectToAction("Index", "Home");
         }
     }

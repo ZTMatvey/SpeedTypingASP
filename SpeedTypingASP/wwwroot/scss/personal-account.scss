@@ -1,0 +1,156 @@
+.personal-account {
+    height: 100%;
+    width: 100%;
+}
+
+.personal-account__block {
+    margin-top: 30px;
+}
+
+.personal-account__content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.personal-account__body {
+    background-color: $sub-bg-color;
+    border-radius: 3px;
+    padding: 20px;
+    width: 75%;
+    margin: 50px 0;
+}
+
+.personal-account__header {
+    border-bottom: $main-text-color 1px solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 50px;
+}
+
+.personal-account__header-element {
+    font-family: $headings-font-family;
+    color: $main-text-color;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 5px 0;
+    opacity: .3;
+    transition: all .1s linear;
+    align-self: flex-end;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+.personal-account__header-element-active {
+    font-weight: 700;
+    font-size: 32px;
+    opacity: 1;
+    align-self: center;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.personal-account__main {
+}
+
+.personal-account__main-info-block {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.personal-account__main-info-block-title {
+    font-family: $headings-font-family;
+    color: $main-text-color;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.personal-account__main-info-block-content {
+    margin-left: 10px;
+    font-family: $main-font-family;
+    color: $main-text-color;
+    background-color: transparent;
+    border-bottom: 1px $main-text-color solid;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.personal-account__block-footer {
+}
+
+.personal-account__block-footer-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.personal-account__block-footer-button {
+    margin-top: 20px;
+    @extend %tpl-transparent-button;
+}
+
+.personal-account__progress-blcok {
+    & .personal-account__text-statistics:first-child {
+        border-top: 1px $main-text-color solid;
+    }
+}
+
+.personal-account__text-statistics {
+    display: flex;
+    justify-content: start;
+    border-bottom: 1px $main-text-color solid;
+    padding: 10px 20px;
+}
+
+.personal-account__text-name {
+    font-family: $headings-font-family;
+    color: $main-text-color;
+    font-size: 20px;
+}
+.personal-account__name-block {
+    width: 30%;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.personal-accout__button {
+}
+
+.personal-accout__statistics-items {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    & .personal-accout__statistics-item:first-child {
+        margin-top: 0;
+    }
+}
+
+.personal-accout__statistics-item {
+    font-family: $main-font-family;
+    color: $main-text-color;
+    margin-top: 10px;
+}
+
+.personal-account__small-button {
+    font-size: 10px;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    @extend %tpl-transparent-button;
+}

@@ -28,8 +28,15 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.Texts.SaveText(model);
-                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+                try
+                {
+                    dataManager.Texts.SaveText(model);
+                    return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", "Ошибка при сохранении сущности в базу данных. Проверьте корректность введенной информации");
+                }
             }
             return View(model);
         }
@@ -43,8 +50,15 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 model.Id = default;
-                dataManager.Texts.SaveText(model);
-                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+                try
+                {
+                    dataManager.Texts.SaveText(model);
+                    return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", "Ошибка при сохранении сущности в базу данных. Проверьте корректность введенной информации");
+                }
             }
             return View(model);
         }

@@ -9,14 +9,14 @@
         color: $button-bg-color;
     }
 }
-@mixin transparent-button-color-settings($button-bg-color, $button-text-color)
-{
+@mixin transparent-button-color-settings($button-bg-color, $button-text-color) {
     color: $button-text-color;
     border-color: $button-text-color;
     background-color: transparent;
-
+    user-select: none;
     transition: color .1s linear, background-color .1s linear;
-    &:hover{
+
+    &:hover {
         background-color: $button-text-color;
         color: $button-bg-color;
     }

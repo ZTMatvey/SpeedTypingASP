@@ -23,10 +23,19 @@
             <div class="header__sign-buttons">
                 @if (SignInManager.IsSignedIn(User))
                 {
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="sign-button"
+                           asp-area="admin"
+                           asp-controller="Home"
+                           asp-action="Index">
+                            Панель администратора
+                        </a>
+                    }
                     <a class="sign-button"
                        asp-area=""
                        asp-controller="Account"
-                       asp-action="Logout">
+                       asp-action="PersonalAccount">
                         @User.Identity.Name
                     </a>
                 }

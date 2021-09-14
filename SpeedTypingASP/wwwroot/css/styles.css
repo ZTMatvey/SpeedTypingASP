@@ -76,17 +76,24 @@ body {
   flex-direction: column;
   height: 100%; }
 
-.sign-button, .text-selection__button, .text-write__button, .auth__button, .admin-panel__button {
+.error-message {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700; }
+
+.sign-button, .text-selection__button, .text-write__button, .auth__button, .admin-panel__button, .personal-account__block-footer-button, .personal-account__small-button {
   color: #333;
   border-color: #333;
   background-color: transparent;
+  user-select: none;
   transition: color .1s linear, background-color .1s linear;
   padding: 10px 25px;
   display: inline-block;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px; }
-  .sign-button:hover, .text-selection__button:hover, .text-write__button:hover, .auth__button:hover, .admin-panel__button:hover {
+  .sign-button:hover, .text-selection__button:hover, .text-write__button:hover, .auth__button:hover, .admin-panel__button:hover, .personal-account__block-footer-button:hover, .personal-account__small-button:hover {
     background-color: #333;
     color: #9BA1F2; }
 
@@ -300,7 +307,7 @@ body {
   font-family: "Roboto", sans-serif;
   color: #333;
   font-size: 25px;
-  margin-bottom: 20px; }
+  margin-bottom: 10px; }
 
 .auth__form {
   width: 100%;
@@ -403,6 +410,7 @@ body {
   color: #333;
   border-color: #333;
   background-color: transparent;
+  user-select: none;
   transition: color .1s linear, background-color .1s linear;
   margin-left: 10px; }
   .admin-panel__button:hover {
@@ -563,9 +571,131 @@ body {
   font-size: 30px;
   padding-bottom: 100px; }
 
+.personal-account {
+  height: 100%;
+  width: 100%; }
+
+.personal-account__block {
+  margin-top: 30px; }
+
+.personal-account__content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%; }
+
+.personal-account__body {
+  background-color: #9BA1F2;
+  border-radius: 3px;
+  padding: 20px;
+  width: 75%;
+  margin: 50px 0; }
+
+.personal-account__header {
+  border-bottom: #333 1px solid;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 50px; }
+
+.personal-account__header-element {
+  font-family: "Vollkorn", serif;
+  color: #333;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 5px 0;
+  opacity: .3;
+  transition: all .1s linear;
+  align-self: flex-end;
+  cursor: pointer;
+  user-select: none; }
+  .personal-account__header-element:hover {
+    opacity: .8; }
+
+.personal-account__header-element-active {
+  font-weight: 700;
+  font-size: 32px;
+  opacity: 1;
+  align-self: center; }
+  .personal-account__header-element-active:hover {
+    opacity: 1; }
+
+.personal-account__main-info-block {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px; }
+
+.personal-account__main-info-block-title {
+  font-family: "Vollkorn", serif;
+  color: #333;
+  font-size: 16px;
+  display: inline-block; }
+
+.personal-account__main-info-block-content {
+  margin-left: 10px;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  background-color: transparent;
+  border-bottom: 1px #333 solid;
+  text-align: left;
+  width: 100%;
+  font-size: 16px;
+  display: inline-block; }
+
+.personal-account__block-footer-buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+
+.personal-account__block-footer-button {
+  margin-top: 20px; }
+
+.personal-account__progress-blcok .personal-account__text-statistics:first-child {
+  border-top: 1px #333 solid; }
+
+.personal-account__text-statistics {
+  display: flex;
+  justify-content: start;
+  border-bottom: 1px #333 solid;
+  padding: 10px 20px; }
+
+.personal-account__text-name {
+  font-family: "Vollkorn", serif;
+  color: #333;
+  font-size: 20px; }
+
+.personal-account__name-block {
+  width: 30%;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start; }
+
+.personal-accout__statistics-items {
+  align-self: center;
+  display: flex;
+  flex-direction: column; }
+  .personal-accout__statistics-items .personal-accout__statistics-item:first-child {
+    margin-top: 0; }
+
+.personal-accout__statistics-item {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  margin-top: 10px; }
+
+.personal-account__small-button {
+  font-size: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  cursor: pointer; }
+
 .main {
   flex: 1 1 auto;
-  overflow-y: auto; }
+  overflow-y: auto;
+  height: 100%; }
 
 .footer {
   min-height: 15vh;
@@ -616,6 +746,7 @@ body {
   color: #333;
   border-color: #333;
   background-color: transparent;
+  user-select: none;
   transition: color .1s linear, background-color .1s linear;
   border-radius: 50%;
   padding: 5px;

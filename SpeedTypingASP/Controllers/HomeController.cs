@@ -56,7 +56,8 @@ namespace SpeedTypingASP.Controllers
                 CountOfCorrects = corrects,
                 TextId = text.Id,
                 Miliseconds = miliseconds,
-                CharactersPerMinute = Math.Round(corrects / (minutes == 0 ? .0001d : minutes), 4)
+                CharactersPerMinute = Math.Round(corrects / (minutes == 0 ? .0001d : minutes), 4),
+                TextTitle = textTitle
             };
 
             var resultViewModel = new TextWriteResultViewModel() { CurrentTextStatistics = textStatistics, TextTitle = textTitle };

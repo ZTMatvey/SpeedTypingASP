@@ -3,7 +3,40 @@
     var strTitle = "Выбор текста";
     ViewBag.Title = strTitle;
 }
+<div class="blur-screen"
+     id="blur-screen"></div>
 <div class="text-selection">
+    <div class="text-selection__popup center"
+         id="text-selection__popup">
+        <div class="text-selection__close-button" onclick="ClosePopUp()">
+            close
+        </div>
+        <div class="text-selection__popup-wrapper">
+            <div class="text-selection__heading text-selection__popup-heading">
+                Настройка выбранного текста
+            </div>
+            <div class="text-selection__item-text-name text-selection__popup-text-title"
+                 id="text-selection__popup-text-title">
+                Lorem, ipsum.
+            </div>
+            <div class="text-selection__popup-text-size">
+                <div class="text-selection__popup-character-count"
+                     id="text-selection__popup-character-count">
+                    Размер текста: medium (50%)
+                </div>
+                <input class="text-selection__popup-slider"
+                       id="text-selection__popup-slider"
+                       type="range" min="1" max="5" value="1"
+                       oninput="UpdateSize(this.value)"/>
+            </div>
+            <a class="text-selection__button"
+               asp-controller="Home"
+               asp-action="TextWrite"
+               asp-route-textTitle="">
+                Выбрать
+            </a>
+        </div>
+    </div>
     <div class="container">
         <div class="text-selection__body">
             <div class="text-selection__wrapper">
@@ -22,12 +55,16 @@
                                     @text.Title
                                 </h4>
                                 <p class="text-selection__content text-content">@text.TextContent</p>
-                                <a class="text-selection__button"
-                                   asp-controller="Home"
-                                   asp-action="TextWrite"
-                                   asp-route-textTitle="@text.Title">
+                                <!--<a class="text-selection__button"
+                                       asp-controller="Home"
+                                       asp-action="TextWrite"
+                                       asp-route-textTitle="@text.Title">
                                     Выбрать
-                                </a>
+                                </a>-->
+                                <div class="text-selection__button"
+                                   onclick="OpenPopUp('@text.Title')">
+                                    Выбрать
+                                </div>
                             </div>
                         }
                     }
@@ -37,3 +74,5 @@
     </div>
 </div>
 <script src="~/JS/text-output.js"></script>
+<script src="~/JS/text-selection-slider.js"></script>
+<script src="~/JS/text-selection-popup.js"></script>

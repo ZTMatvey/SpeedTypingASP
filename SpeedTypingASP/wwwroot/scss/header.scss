@@ -1,5 +1,7 @@
 .header {
     background-color: #9BA1F2;
+    position: relative;
+    z-index: 10;
 }
 .header__top {
     width: 100%;
@@ -52,4 +54,12 @@
 .sign-button {
     @extend %tpl-transparent-button;
     margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-button__image {
+    font-family: $material-font-family;
+    font-size: 18px;
 }

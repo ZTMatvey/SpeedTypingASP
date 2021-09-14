@@ -17,6 +17,39 @@ body{
     height: 100%;
 }
 
+.center {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+
+    &-active {
+        animation: FromTopToCenter .5s linear forwards;
+    }
+
+    &-disactive {
+        animation: FromCenterToTop .5s linear forwards;
+    }
+}
+
+@keyframes FromTopToCenter{
+    0% {
+        top: -50%;
+    }
+    100% {
+        top: 50%;
+    }
+}
+@keyframes FromCenterToTop{
+    0% {
+        top: 50%;
+    }
+    100% {
+        top: -50%;
+    }
+}
+
 .error-message {
     font-family: $main-font-family;
     color: $main-text-color;

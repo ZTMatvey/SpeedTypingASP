@@ -78,3 +78,12 @@
         color: $main-bg-color;
     }
 }
+
+.text-write__result-text-title {
+    font-family: $headings-font-family;
+    color: $main-text-color;
+    text-align: center;
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 20px;
+}

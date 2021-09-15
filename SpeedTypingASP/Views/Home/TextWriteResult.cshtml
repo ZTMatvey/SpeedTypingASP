@@ -11,6 +11,7 @@
     }
     <div class="container">
         <div class="text-write__timer-info-wrapper" id="text-write__timer-info-wrapper">
+            <div class="text-write__result-text-title">@Model.ViewTextTitle</div>
             @if (Model.BestTextStatistics == null)
             {
                 <div class="text-write__info" id="text-write__info">
@@ -27,7 +28,7 @@
             }
             <div class="text-write__buttons">
                 <a class="text-write__button" href="/">На главную</a>
-                <a asp-action="TextWrite" asp-route-textTitle="@Model.TextTitle" class="text-write__button">Повторить</a>
+                <a asp-area="" asp-controller="Home" asp-action="TextWrite" asp-route-textTitle="@Model.TextTitle" asp-route-textSize="@Model.TextSize" class="text-write__button">Повторить</a>
             </div>
         </div>
     </div>

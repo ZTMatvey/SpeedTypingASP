@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using SpeedTypingASP.Domain;
 using SpeedTypingASP.Domain.Entities;
 using SpeedTypingASP.Models;
+using SpeedTypingASP.Service;
 
 namespace SpeedTypingASP.Controllers
 {
@@ -27,16 +28,47 @@ namespace SpeedTypingASP.Controllers
         {
             return View(dataManager.Texts.GetTexts());
         }
-        public IActionResult TextWrite(string textTitle)
+        [HttpGet]
+        [HttpPost]
+        public IActionResult TextWrite(string textTitle, int textSize)
         {
             var text = dataManager.Texts.GetTexts().FirstOrDefault(x=> x.Title == textTitle);
             //todo вклюить и проверить
-            //if(text == null)
-            //    return RedirectToAction("Index", "Home");
-            return View(text);
+            if(text == null 
+               || string.IsNullOrEmpty(text.TextContent) 
+               || string.IsNullOrEmpty(text.Title) 
+               || string.IsNullOrEmpty(text.Id))
+                return RedirectToAction("Index", "Home");
+            switch (textSize)
+            {
+                case 1:
+                    if (text.TextContent.Length < 50)
+                        break;
+                    text.TextContent = text.TextContent.Substring(0, 50);
+                    break;
+                case 2:
+                    text.TextContent = text.TextContent.Substring(
+                        0,
+                        (int)(text.TextContent.Length * .25));
+                    break;
+                case 3:
+                    text.TextContent = text.TextContent.Substring(
+                        0,
+                        (int)(text.TextContent.Length * .5));
+                    break;
+                case 4:
+                    text.TextContent = text.TextContent.Substring(
+                        0,
+                        (int)(text.TextContent.Length * .75));
+                    break;
+                case 5:
+                    break;
+            }
+            return View(new TextWriteViewModel(){Text = text, TextSize = textSize});
         }
         [HttpPost]
         public async Task<IActionResult> TextWriteResult(
+            int textSize,
             string textTitle, 
             string countOfErrors,
             string countOfCorrects,
@@ -48,8 +80,6 @@ namespace SpeedTypingASP.Controllers
             var errors = int.Parse(countOfErrors);
             var corrects = int.Parse(countOfCorrects);
 
-
-            //todo проверка minutes на 0
             var textStatistics = new TextStatistics()
             {
                 CountOfErrors = errors,
@@ -60,12 +90,19 @@ namespace SpeedTypingASP.Controllers
                 TextTitle = textTitle
             };
 
-            var resultViewModel = new TextWriteResultViewModel() { CurrentTextStatistics = textStatistics, TextTitle = textTitle };
+            var resultViewModel = new TextWriteResultViewModel()
+            {
+                CurrentTextStatistics = textStatistics, 
+                TextTitle = textTitle,
+                TextSize = textSize,
+                ViewTextTitle = textTitle.GetViewTextTitle(textSize)
+            };
 
             if(signInManager.IsSignedIn(User))
             {
                 var user = await userManager.GetUserAsync(User);
-                var bestStatistics = user.SetTextStatisticsAndGetBestStatistics(textStatistics);
+                var bestStatistics = user.SetTextStatisticsAndGetBestStatistics(textSize, 
+                    textStatistics);
                 resultViewModel.BestTextStatistics = bestStatistics;
                 var result = await userManager.UpdateAsync(user);
                 if(!result.Succeeded)

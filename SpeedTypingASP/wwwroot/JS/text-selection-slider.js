@@ -11,7 +11,7 @@ function UpdateSize(value) {
     let textSizeStr = 'Размер текста: ';
     switch (value) {
         case '1':
-            textSizeStr += 'extremely short (50 символов)';
+            textSizeStr += 'ultra short (50 символов)';
             break;
         case '2':
             textSizeStr += 'short (25%)';
@@ -27,4 +27,7 @@ function UpdateSize(value) {
             break;
     }
     popupCharacterCountElem.innerHTML = textSizeStr;
+}
+function GetSliderValue() {
+    return popupSliderElem.value;
 }

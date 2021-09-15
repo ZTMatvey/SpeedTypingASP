@@ -11,6 +11,8 @@ namespace SpeedTypingASP.Models
     {
         public TextStatistics BestTextStatistics { get; set; }
         public TextStatistics CurrentTextStatistics { get; set; }
+        public string ViewTextTitle { get; set; }
         public string TextTitle { get; set; }
+        public int TextSize { get; set; }
     }
 }

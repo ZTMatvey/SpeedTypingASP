@@ -6,6 +6,7 @@
 <div class="blur-screen"
      id="blur-screen"></div>
 <div class="text-selection">
+    <form method="post" id="text-selection__form"></form>
     <div class="text-selection__popup center"
          id="text-selection__popup">
         <div class="text-selection__close-button" onclick="ClosePopUp()">
@@ -30,9 +31,7 @@
                        oninput="UpdateSize(this.value)"/>
             </div>
             <a class="text-selection__button"
-               asp-controller="Home"
-               asp-action="TextWrite"
-               asp-route-textTitle="">
+               onclick="SelectText()">
                 Выбрать
             </a>
         </div>
@@ -62,7 +61,7 @@
                                     Выбрать
                                 </a>-->
                                 <div class="text-selection__button"
-                                   onclick="OpenPopUp('@text.Title')">
+                                     onclick="OpenPopUp('@text.Title')">
                                     Выбрать
                                 </div>
                             </div>

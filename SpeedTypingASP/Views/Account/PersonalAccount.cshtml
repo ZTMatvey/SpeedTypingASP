@@ -1,6 +1,24 @@
 ﻿@model UserInformation
 @{
     var textsStatistics = Model.GetTextsStatistics();
+    var typeOfTextsStatistics = new Dictionary<string, List<TextStatistics>>();
+
+    var pattern = @"([^{]+)\s{(.+)}";
+    var regex = new Regex(pattern);
+
+
+    foreach (var textStatistic in textsStatistics)
+    {
+        var match = regex.Match(textStatistic.TextTitle);
+        if (match.Groups.Count != 3)
+            continue;
+        var textTitle = match.Groups[1].Value;
+        var isGroupCreated = typeOfTextsStatistics.ContainsKey(textTitle);
+        if (!isGroupCreated)
+            typeOfTextsStatistics.Add(textTitle, new List<TextStatistics>());
+        textStatistic.TextTitle = match.Groups[2].Value;
+        typeOfTextsStatistics[textTitle].Add(textStatistic);
+    }
 }
 
 <div class="personal-account">
@@ -31,15 +49,13 @@
                             <div class="personal-account__main-info-block-title">
                                 Логин:
                             </div>
-                            <input type="text" class="personal-account__main-info-block-content" value="@Model.UserName">
-                            </input>
+                            <input type="text" class="personal-account__main-info-block-content" value="@Model.UserName" />
                         </div>
                         <div class="personal-account__main-info-block">
                             <div class="personal-account__main-info-block-title">
                                 Почта:
                             </div>
-                            <input type="text" class="personal-account__main-info-block-content" value="@Model.Email">
-                            </input>
+                            <input type="text" class="personal-account__main-info-block-content" value="@Model.Email" />
                         </div>
                         <div class="personal-account__block-footer">
                             <div class="personal-account__block-footer-buttons">
@@ -59,33 +75,43 @@
                     </div>
                     <div class="personal-account__progress-blcok personal-account__block"
                          id="personal-account__progress-blcok">
-                        @if (textsStatistics.Any())
+                        @if (typeOfTextsStatistics.Any())
                         {
-                            @foreach (var textStatistics in textsStatistics)
+                            @foreach (var typeTextStatistics in typeOfTextsStatistics)
                             {
                                 <div class="personal-account__text-statistics">
-                                    @if (!string.IsNullOrEmpty(textStatistics.TextTitle))
+                                    @if (!string.IsNullOrEmpty(typeTextStatistics.Key))
                                     {
                                         <div class="personal-account__name-block">
                                             <div class="personal-account__text-name">
-                                                @textStatistics.TextTitle
+                                                @typeTextStatistics.Key
                                             </div>
-                                            <a class="personal-account__small-button personal-accout__button"
-                                               onclick="ClearTextStatistics('@textStatistics.TextTitle')">
-                                                Очистить
-                                            </a>
                                         </div>
                                     }
-                                    <div class="personal-accout__statistics-items">
-                                        <div class="personal-accout__statistics-item">
-                                            Лучшее CPM: @textStatistics.CharactersPerMinute
-                                        </div>
-                                        <div class="personal-accout__statistics-item">
-                                            Лучшее время: @textStatistics.GetTimeInNormalForm()
-                                        </div>
-                                        <div class="personal-accout__statistics-item">
-                                            Лучшее количество ошибок: @textStatistics.CountOfErrors
-                                        </div>
+                                    <div class="personal-account__main-block">
+                                        @foreach (var textStatistics in typeTextStatistics.Value)
+                                        {
+                                            <div class="personal-accout__concrete-text-statistics">
+                                                <div class="personal-accout__concrete-text-name">
+                                                    @textStatistics.TextTitle
+                                                </div>
+                                                <div class="personal-accout__statistics-items">
+                                                    <div class="personal-accout__statistics-item">
+                                                        Лучшее CPM: @textStatistics.CharactersPerMinute
+                                                    </div>
+                                                    <div class="personal-accout__statistics-item">
+                                                        Лучшее время: @textStatistics.GetTimeInNormalForm()
+                                                    </div>
+                                                    <div class="personal-accout__statistics-item">
+                                                        Лучшее количество ошибок: @textStatistics.CountOfErrors
+                                                    </div>
+                                                </div>
+                                                <a class="personal-account__small-button personal-accout__button"
+                                                   onclick="ClearTextStatistics('@typeTextStatistics.Key {@textStatistics.TextTitle}')">
+                                                    Очистить
+                                                </a>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             }

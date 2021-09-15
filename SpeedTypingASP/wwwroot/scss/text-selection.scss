@@ -156,12 +156,12 @@
 
     &-active {
         pointer-events: all;
-        animation: blur 1s linear forwards;
+        animation: blur .5s linear forwards;
     }
 
     &-disactive {
         pointer-events: none;
-        animation: back-blur 1s linear forwards;
+        animation: back-blur .5s linear forwards;
     }
 }
 

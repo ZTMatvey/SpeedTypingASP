@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using SpeedTypingASP.Service;
 
 namespace SpeedTypingASP.Domain
 {
@@ -16,10 +17,12 @@ namespace SpeedTypingASP.Domain
             return textsStatistics;
         }
 
-        public TextStatistics SetTextStatisticsAndGetBestStatistics(TextStatistics textStatistics)
+        public TextStatistics SetTextStatisticsAndGetBestStatistics(int textSize, TextStatistics textStatistics)
         {
             var textsStatistics = DeserializeTextStatisticsAndGetIt();
-            var currentTextStatistics = textsStatistics.FirstOrDefault(x => x.TextId == textStatistics.TextId);
+            var textTitle = $"{textStatistics.TextTitle} {{{NamesOfElements.TextSizes[textSize - 1]}}}";
+            textStatistics.TextTitle = textTitle;
+            var currentTextStatistics = textsStatistics.FirstOrDefault(x => x.TextTitle == textStatistics.TextTitle);
 
             if (currentTextStatistics == null)
             {

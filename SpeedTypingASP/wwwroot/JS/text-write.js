@@ -2,6 +2,7 @@
 var correctStringTextbox = document.getElementById('actual-correct-string-textbox');
 var timerInfoWrapper = document.getElementById('text-write__timer-info-wrapper');
 var textTitleElement = document.getElementById('text-write__text-title');
+var textSizeElement = document.getElementById('text-write__TextSize');
 
 inputField.focus();
 
@@ -70,7 +71,7 @@ var hasError = false;
 function SendFormRequestOfEnd() {
     const form = document.getElementById('text-write__resultForm');
 
-    form.setAttribute('action', `/Home/TextWriteResult?textTitle=${textTitleElement.innerHTML}&countOfErrors=${countOfErrors}&countOfCorrects=${countOfCorrects}&time=${GetNumTime()}`);
+    form.setAttribute('action', `/Home/TextWriteResult?textSize=${textSizeElement.value}&textTitle=${textTitleElement.value}&countOfErrors=${countOfErrors}&countOfCorrects=${countOfCorrects}&time=${GetNumTime()}`);
 
     form.submit();
 }

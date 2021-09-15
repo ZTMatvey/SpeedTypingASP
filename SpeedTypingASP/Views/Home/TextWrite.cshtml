@@ -1,23 +1,22 @@
-﻿@model Text
+﻿@model TextWriteViewModel
 @{
     var strTitle = "Набор текста";
     ViewBag.Title = strTitle;
 }
-<div style="display: none;" id="text-write__text-title">@Model.Title</div>
-<form
-asp-controller="Home"
-asp-action="TextWriteResult"
-method="post"
-asp-route-textTitle="1"
-asp-route-countOfErrors="1"
-asp-route-countOfCorrects="1"
-id="text-write__resultForm"
-></form>
+<form asp-controller="Home"
+      asp-action="TextWriteResult"
+      method="post"
+      asp-route-textTitle="1"
+      asp-route-countOfErrors="1"
+      asp-route-countOfCorrects="1"
+      id="text-write__resultForm"></form>
+<input value="@Model.TextSize" id="text-write__TextSize" type="hidden" />
+<input value="@Model.Text.Title" id="text-write__text-title" type="hidden" />
 <div class="text-write">
     <div class="container">
         <div class="text-write-body">
             <input type="text" class="text-write__text-box" id="text-input-field">
-            <div class="text-write__actual-string" id="actual-correct-string-textbox">@Model.TextContent</div>
+            <div class="text-write__actual-string" id="actual-correct-string-textbox">@Model.Text.TextContent</div>
         </div>
         <div class="text-write__timer-info-wrapper" id="text-write__timer-info-wrapper">
             <div class="text-write__cpm-text" id="text-write__cpm-text">

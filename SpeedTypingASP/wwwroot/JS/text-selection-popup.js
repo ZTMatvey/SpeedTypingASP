@@ -25,3 +25,11 @@ function ClosePopUp(isOnLoad) {
     if (blurSreenElem.classList.contains('blur-screen-active'))
         blurSreenElem.classList.remove('blur-screen-active');
 }
+function SelectText() {
+    const form = document.getElementById('text-selection__form');
+    const textTitle = popupTextTitleElem.innerHTML;
+    const actionValue = `/Home/TextWrite?textTitle=${textTitle}&textSize=${GetSliderValue()}`;
+    form.setAttribute('action', actionValue);
+
+    form.submit();
+}

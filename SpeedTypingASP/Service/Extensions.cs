@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpeedTypingASP.Domain;
 
 namespace SpeedTypingASP.Service
 {
@@ -33,6 +34,24 @@ namespace SpeedTypingASP.Service
             }
 
             return textTitle;
+        }
+        public static List<TextStatistics> SortBySize(this List<TextStatistics> list)
+        {
+            var resultArr = new TextStatistics[5];
+            foreach (var element in list)
+                for (int i = 0; i < NamesOfElements.TextSizes.Length; i++)
+                    if (element.TextTitle == NamesOfElements.TextSizes[i])
+                    {
+                        resultArr[i] = element;
+                        break;
+                    }
+
+            var result = resultArr.ToList();
+            for (int i = 0; i < result.Count; i++)
+                if (result[i] == null)
+                    result.RemoveAt(i--);
+
+            return result;
         }
     }
 }

@@ -19,6 +19,9 @@
         textStatistic.TextTitle = match.Groups[2].Value;
         typeOfTextsStatistics[textTitle].Add(textStatistic);
     }
+    List<string> keys = new List<string>(typeOfTextsStatistics.Keys);
+    foreach (var key in keys)
+        typeOfTextsStatistics[key] = typeOfTextsStatistics[key].SortBySize();
 }
 
 <div class="personal-account">

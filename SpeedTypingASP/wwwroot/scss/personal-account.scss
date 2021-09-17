@@ -129,17 +129,33 @@
     font-family: $headings-font-family;
     color: $main-text-color;
     font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+    display: block;
+
+    &-disactive {
+        opacity: .4;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    &-active {
+        opacity: 1;
+        border-bottom: 1px $main-text-color solid;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
 }
 .personal-account__name-block {
-    width: 30%;
     margin-right: 50px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 }
 .personal-account__main-block{
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

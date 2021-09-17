@@ -821,18 +821,26 @@ body {
 .personal-account__text-name {
   font-family: "Vollkorn", serif;
   color: #333;
-  font-size: 20px; }
+  font-size: 20px;
+  text-align: left;
+  cursor: pointer;
+  display: block; }
+  .personal-account__text-name-disactive {
+    opacity: .4; }
+    .personal-account__text-name-disactive:hover {
+      opacity: .7; }
+  .personal-account__text-name-active {
+    opacity: 1;
+    border-bottom: 1px #333 solid; }
+    .personal-account__text-name-active:hover {
+      opacity: .7; }
 
 .personal-account__name-block {
-  width: 30%;
   margin-right: 50px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center; }
 
 .personal-account__main-block {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

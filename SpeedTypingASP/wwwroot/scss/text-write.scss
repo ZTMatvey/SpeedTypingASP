@@ -9,11 +9,22 @@
     background-color: transparent;
     margin: 20px;
     padding: 5px;
-    border-bottom: 2px $sub-bg-color solid;
     overflow: hidden;
-
     font-family: $main-font-family;
     color: $main-text-color;
+
+    &-normal {
+        border-bottom: 2px $sub-bg-color solid;
+        background-color: transparent;
+    }
+    &-error {
+        border-bottom: 2px red solid;
+        background-color: rgba(255, 0, 0, .4);
+    }
+    &-all-correct {
+        border-bottom: 2px green solid;
+        background-color: rgba(0, 255, 0, .4);
+    }
 }
 .text-write__actual-string {
     font-family: $main-font-family;

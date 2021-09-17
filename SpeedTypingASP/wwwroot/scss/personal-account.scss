@@ -4,7 +4,7 @@
 }
 
 .personal-account__block {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .personal-account__content-wrapper {
@@ -103,7 +103,7 @@
 }
 
 .personal-account__progress-blcok {
-    & .personal-account__text-statistics:first-child {
+    & .personal-account__text-statistics:nth-child(2) {
         border-top: 1px $main-text-color solid;
     }
 }
@@ -116,6 +116,15 @@
     padding: 10px 20px;
 }
 
+.personal-account__global-info{
+}
+.personal-account__global-info-item {
+    font-family: $main-font-family;
+    color: $main-text-color;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
 .personal-account__text-name {
     font-family: $headings-font-family;
     color: $main-text-color;

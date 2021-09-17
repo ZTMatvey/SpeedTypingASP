@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SpeedTypingASP.Domain;
+using SpeedTypingASP.Service.Errors;
 
 namespace SpeedTypingASP.Service
 {
@@ -52,6 +53,23 @@ namespace SpeedTypingASP.Service
                     result.RemoveAt(i--);
 
             return result;
+        }
+        public static string GetTimeInNormalForm(this int Miliseconds)
+        {
+            var _seconds = Miliseconds / 100;
+            var _minutes = _seconds / 60;
+            _seconds %= 60;
+            var _miliSecs = Miliseconds % 100;
+            var _strSeconds = _seconds < 10 ? $"0{ _seconds}" : _seconds.ToString();
+            var _strMiliSecs = _miliSecs < 10 ? $"0{ _miliSecs}" : _miliSecs.ToString();
+            return $"{ _minutes}:{ _seconds}.{ _miliSecs}";
+        }
+        public static int GetIndexOfFirstElementWithStartCharacter(this string input, int startCharacter, params char[] elements)
+        {
+            for (var i = startCharacter; i < input.Length; i++)
+                if (elements.Any(element => input[i] == element))
+                    return i;
+            throw new CoincidencesNotFoundException("Совпадения не найдены");
         }
     }
 }

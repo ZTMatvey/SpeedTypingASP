@@ -9,6 +9,7 @@ using SpeedTypingASP.Domain;
 using SpeedTypingASP.Domain.Entities;
 using SpeedTypingASP.Models;
 using SpeedTypingASP.Service;
+using SpeedTypingASP.Service.Errors;
 
 namespace SpeedTypingASP.Controllers
 {
@@ -44,27 +45,48 @@ namespace SpeedTypingASP.Controllers
                 case 1:
                     if (text.TextContent.Length < 50)
                         break;
-                    text.TextContent = text.TextContent.Substring(0, 50);
+                    text.TextContent = GetSubTextContent(text.TextContent, 50, 10);
                     break;
                 case 2:
-                    text.TextContent = text.TextContent.Substring(
-                        0,
-                        (int)(text.TextContent.Length * .25));
+                {
+                    var startIndex = (int)(text.TextContent.Length * .25);
+                    text.TextContent = GetSubTextContent(text.TextContent, startIndex, 15);
                     break;
+                }
                 case 3:
-                    text.TextContent = text.TextContent.Substring(
-                        0,
-                        (int)(text.TextContent.Length * .5));
+                {
+                    var startIndex = (int)(text.TextContent.Length * .5);
+                    text.TextContent = GetSubTextContent(text.TextContent, startIndex, 25);
                     break;
+                }
                 case 4:
-                    text.TextContent = text.TextContent.Substring(
-                        0,
-                        (int)(text.TextContent.Length * .75));
+                {
+                    var startIndex = (int)(text.TextContent.Length * .75);
+                    text.TextContent = GetSubTextContent(text.TextContent, startIndex, 30);
                     break;
+                }
                 case 5:
                     break;
             }
             return View(new TextWriteViewModel(){Text = text, TextSize = textSize});
+        }
+
+        private string GetSubTextContent(string textContent, int startIndex, int maxDifference)
+        {
+            var endIndex = 0;
+            try
+            {
+                endIndex = textContent.GetIndexOfFirstElementWithStartCharacter(startIndex, ' ', '\n');
+                if (endIndex - startIndex > maxDifference)
+                    endIndex = startIndex;
+            }
+            catch (CoincidencesNotFoundException)
+            {
+                endIndex = startIndex;
+            }
+
+            var result = textContent.Substring(0, endIndex);
+            return result;
         }
         [HttpPost]
         public async Task<IActionResult> TextWriteResult(

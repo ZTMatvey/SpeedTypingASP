@@ -4,6 +4,7 @@ var timerInfoWrapper = document.getElementById('text-write__timer-info-wrapper')
 var textTitleElement = document.getElementById('text-write__text-title');
 var textSizeElement = document.getElementById('text-write__TextSize');
 
+NormalInTextWrite();
 inputField.focus();
 
 var inputString = correctStringTextbox.innerHTML;
@@ -68,12 +69,33 @@ UpdateActualCorrectString();
 
 var hasError = false;
 
+function ErrorInTextWrite() {
+    RemoveAllNonMainClassesFromTextBox();
+    inputField.classList.add('text-write__text-box-error');
+}
+function NormalInTextWrite() {
+    RemoveAllNonMainClassesFromTextBox();
+    inputField.classList.add('text-write__text-box-normal');
+}
+function AllCorrectInTextWrite() {
+    RemoveAllNonMainClassesFromTextBox();
+    inputField.classList.add('text-write__text-box-all-correct');
+}
 function SendFormRequestOfEnd() {
     const form = document.getElementById('text-write__resultForm');
 
     form.setAttribute('action', `/Home/TextWriteResult?textSize=${textSizeElement.value}&textTitle=${textTitleElement.value}&countOfErrors=${countOfErrors}&countOfCorrects=${countOfCorrects}&time=${GetNumTime()}`);
 
     form.submit();
+}
+
+function RemoveAllNonMainClassesFromTextBox() {
+    if (inputField.classList.contains('text-write__text-box-normal'))
+        inputField.classList.remove('text-write__text-box-normal');
+    if (inputField.classList.contains('text-write__text-box-error'))
+        inputField.classList.remove('text-write__text-box-error');
+    if (inputField.classList.contains('text-write__text-box-all-correct'))
+        inputField.classList.remove('text-write__text-box-all-correct');
 }
 
 function UpdateActualCorrectString() {
@@ -85,8 +107,9 @@ function UpdateActualCorrectString() {
     if (currentIdOfCurrentString > correctStrings.length) {
         currentIdOfCurrentString = 0;
         correctStringTextbox.innerHTML = '';
-        inputField.style.borderColor = 'green';
-        inputField.style.backgroundColor = 'rgba(0, 255, 0, .4)';
+        AllCorrectInTextWrite();
+        //inputField.style.borderColor = 'green';
+        //inputField.style.backgroundColor = 'rgba(0, 255, 0, .4)';
         return 0;
         UpdateActualCorrectString();
     }
@@ -132,13 +155,15 @@ function validateInputField(isAdded) {
                 return;
             }
         }
-        inputField.style.borderColor = 'red';
-        inputField.style.backgroundColor = 'rgba(255, 0, 0, .4)';
+        ErrorInTextWrite();
+        //inputField.style.borderColor = 'red';
+        //inputField.style.backgroundColor = 'rgba(255, 0, 0, .4)';
         hasError = true;
     }
     else if (hasError) {
-        inputField.style.borderColor = '#9BA1F2';
-        inputField.style.backgroundColor = 'transparent';
+        NormalInTextWrite();
+        //inputField.style.borderColor = '#9BA1F2';
+        //inputField.style.backgroundColor = 'transparent';
         hasError = false;
     } else if (value.length > maxCountOfCorrectsInLine) {
         maxCountOfCorrectsInLine++;

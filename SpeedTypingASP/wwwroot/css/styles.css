@@ -123,7 +123,8 @@ body {
 .header {
   background-color: #9BA1F2;
   position: relative;
-  z-index: 10; }
+  z-index: 10;
+  border-bottom: 1px #333 solid; }
 
 .header__top {
   width: 100%;
@@ -352,10 +353,18 @@ body {
   background-color: transparent;
   margin: 20px;
   padding: 5px;
-  border-bottom: 2px #9BA1F2 solid;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
   color: #333; }
+  .text-write__text-box-normal {
+    border-bottom: 2px #9BA1F2 solid;
+    background-color: transparent; }
+  .text-write__text-box-error {
+    border-bottom: 2px red solid;
+    background-color: rgba(255, 0, 0, 0.4); }
+  .text-write__text-box-all-correct {
+    border-bottom: 2px green solid;
+    background-color: rgba(0, 255, 0, 0.4); }
 
 .text-write__actual-string {
   font-family: "Roboto", sans-serif;
@@ -716,7 +725,7 @@ body {
   width: 100%; }
 
 .personal-account__block {
-  margin-top: 30px; }
+  margin-top: 15px; }
 
 .personal-account__content-wrapper {
   display: flex;
@@ -792,7 +801,7 @@ body {
 .personal-account__block-footer-button {
   margin-top: 20px; }
 
-.personal-account__progress-blcok .personal-account__text-statistics:first-child {
+.personal-account__progress-blcok .personal-account__text-statistics:nth-child(2) {
   border-top: 1px #333 solid; }
 
 .personal-account__text-statistics {
@@ -801,6 +810,13 @@ body {
   align-items: center;
   border-bottom: 1px #333 solid;
   padding: 10px 20px; }
+
+.personal-account__global-info-item {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px; }
 
 .personal-account__text-name {
   font-family: "Vollkorn", serif;
@@ -861,7 +877,8 @@ body {
 
 .footer {
   min-height: 15vh;
-  background-color: #494C73; }
+  background-color: #494C73;
+  border-top: 1px #333 solid; }
 
 .footer__body {
   display: flex;

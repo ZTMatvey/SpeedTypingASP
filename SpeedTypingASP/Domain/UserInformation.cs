@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,18 @@ namespace SpeedTypingASP.Domain
     public class UserInformation : IdentityUser
     {
         public string JsonTextsStatistics { get; set; }
-
+        public int AllTimeMiliseconds { get; set; }
+        public double AverageCPM 
+        {
+            get
+            {
+                var statistics = GetTextsStatistics();
+                var sumOfCPM = 0d;
+                foreach (var statistic in statistics)
+                    sumOfCPM += statistic.CharactersPerMinute;
+                return Math.Round(sumOfCPM / statistics.Count, 4);
+            }
+        }
         public List<TextStatistics> GetTextsStatistics()
         {
             var textsStatistics = DeserializeTextStatisticsAndGetIt();
@@ -19,6 +31,8 @@ namespace SpeedTypingASP.Domain
 
         public TextStatistics SetTextStatisticsAndGetBestStatistics(int textSize, TextStatistics textStatistics)
         {
+            if(textStatistics.CharactersPerMinute >= 100)
+                AllTimeMiliseconds += textStatistics.Miliseconds;
             var textsStatistics = DeserializeTextStatisticsAndGetIt();
             var textTitle = $"{textStatistics.TextTitle} {{{NamesOfElements.TextSizes[textSize - 1]}}}";
             textStatistics.TextTitle = textTitle;

@@ -1,6 +1,7 @@
-.footer{
+.footer {
     min-height: 15vh;
     background-color: $dark-sub-bg-color;
+    border-top: 1px $main-text-color solid;
 }
 .footer__body{
     display: flex;

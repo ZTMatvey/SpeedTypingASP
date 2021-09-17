@@ -15,16 +15,5 @@ namespace SpeedTypingASP.Domain
         public int CountOfCorrects { get; set; }
         public int Miliseconds { get; set; }
         public double CharactersPerMinute { get; set; }
-
-        public string GetTimeInNormalForm()
-        {
-            var _seconds = Miliseconds / 100;
-            var _minutes = _seconds / 60;
-            _seconds %= 60;
-            var _miliSecs = Miliseconds % 100;
-            var _strSeconds = _seconds < 10 ? $"0{ _seconds}" : _seconds.ToString();
-            var _strMiliSecs = _miliSecs < 10 ? $"0{ _miliSecs}" : _miliSecs.ToString();
-            return $"{ _minutes}:{ _seconds}.{ _miliSecs}";
-        }
     }
 }

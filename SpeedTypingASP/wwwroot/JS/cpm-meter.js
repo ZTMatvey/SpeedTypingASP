@@ -7,7 +7,6 @@ const countOfMeterings = 2 * 8 - 1;
 
 function StartCpmTimer() {
     cpmInterval = setInterval(() => {
-        console.log(correctInLastPartOfTime);
         partOfTimeCorrects[currentIndex < countOfMeterings ? currentIndex++ : UpdateIndexAndGetIt()] = correctInLastPartOfTime;
         correctInLastPartOfTime = 0;
         cpmTextElem.innerHTML = `${partOfTimeCorrects.reduce((a, b) => a + b, 0) * 30} cpm`;

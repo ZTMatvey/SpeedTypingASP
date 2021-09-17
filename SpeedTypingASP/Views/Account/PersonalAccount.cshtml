@@ -78,6 +78,14 @@
                     </div>
                     <div class="personal-account__progress-blcok personal-account__block"
                          id="personal-account__progress-blcok">
+                        <div class="personal-account__global-info">
+                            <div class="personal-account__global-info-item">
+                                Всего времени: @Model.AllTimeMiliseconds.GetTimeInNormalForm()
+                            </div>
+                            <div class="personal-account__global-info-item">
+                                Средний CPM: @Model.AverageCPM
+                            </div>
+                        </div>
                         @if (typeOfTextsStatistics.Any())
                         {
                             @foreach (var typeTextStatistics in typeOfTextsStatistics)
@@ -96,14 +104,14 @@
                                         {
                                             <div class="personal-accout__concrete-text-statistics">
                                                 <div class="personal-accout__concrete-text-name">
-                                                    @textStatistics.TextTitle
+                                                    @textStatistics.TextTitle (@textStatistics.CountOfCorrects)
                                                 </div>
                                                 <div class="personal-accout__statistics-items">
                                                     <div class="personal-accout__statistics-item">
                                                         Лучшее CPM: @textStatistics.CharactersPerMinute
                                                     </div>
                                                     <div class="personal-accout__statistics-item">
-                                                        Лучшее время: @textStatistics.GetTimeInNormalForm()
+                                                        Лучшее время: @textStatistics.Miliseconds.GetTimeInNormalForm()
                                                     </div>
                                                     <div class="personal-accout__statistics-item">
                                                         Лучшее количество ошибок: @textStatistics.CountOfErrors

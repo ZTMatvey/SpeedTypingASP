@@ -23,7 +23,7 @@
             <div class="text-selection__popup-text-size">
                 <div class="text-selection__popup-character-count"
                      id="text-selection__popup-character-count">
-                    Размер текста: medium (50%)
+                    Размер текста: medium (50%) - 400 символов
                 </div>
                 <input class="text-selection__popup-slider"
                        id="text-selection__popup-slider"
@@ -61,7 +61,7 @@
                                     Выбрать
                                 </a>-->
                                 <div class="text-selection__button"
-                                     onclick="OpenPopUp('@text.Title')">
+                                     onclick="OpenPopUp('@text.Title', @text.TextContent.Length)">
                                     Выбрать
                                 </div>
                             </div>

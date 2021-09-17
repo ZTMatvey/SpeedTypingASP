@@ -23,6 +23,17 @@ namespace SpeedTypingASP.Domain
                 return Math.Round(sumOfCPM / statistics.Count, 4);
             }
         }
+        public double AverageErrorPercent
+        {
+            get
+            {
+                var statistics = GetTextsStatistics();
+                var sumOfErrorPercent = 0d;
+                foreach (var statistic in statistics)
+                    sumOfErrorPercent += statistic.GetPercentOfErrors();
+                return Math.Round(sumOfErrorPercent / statistics.Count, 4);
+            }
+        }
         public List<TextStatistics> GetTextsStatistics()
         {
             var textsStatistics = DeserializeTextStatisticsAndGetIt();
@@ -40,11 +51,13 @@ namespace SpeedTypingASP.Domain
 
             if (currentTextStatistics == null)
             {
+                textStatistics.AmountOfFinishedTexts = 1;
                 textsStatistics.Add(textStatistics);
                 currentTextStatistics = textStatistics;
             }
             else
             {
+                currentTextStatistics.AmountOfFinishedTexts++;
                 if (string.IsNullOrEmpty(currentTextStatistics.TextTitle))
                     currentTextStatistics.TextTitle = textStatistics.TextTitle;
                 if (textStatistics.CountOfCorrects > currentTextStatistics.CountOfCorrects)

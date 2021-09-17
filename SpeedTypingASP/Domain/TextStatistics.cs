@@ -15,5 +15,8 @@ namespace SpeedTypingASP.Domain
         public int CountOfCorrects { get; set; }
         public int Miliseconds { get; set; }
         public double CharactersPerMinute { get; set; }
+        public int AmountOfFinishedTexts { get; set; }
+
+        public double GetPercentOfErrors()=>  Math.Round(CountOfErrors / (double)CountOfCorrects * 100, 4);
     }
 }

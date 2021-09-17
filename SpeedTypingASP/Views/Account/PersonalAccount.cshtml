@@ -85,6 +85,9 @@
                             <div class="personal-account__global-info-item">
                                 Средний CPM: @Model.AverageCPM
                             </div>
+                            <div class="personal-account__global-info-item">
+                                Средний процент ошибок: @Model.AverageErrorPercent
+                            </div>
                         </div>
                         @if (typeOfTextsStatistics.Any())
                         {
@@ -108,13 +111,16 @@
                                                 </div>
                                                 <div class="personal-accout__statistics-items">
                                                     <div class="personal-accout__statistics-item">
+                                                        Напечатано раз: @textStatistics.AmountOfFinishedTexts
+                                                    </div>
+                                                    <div class="personal-accout__statistics-item">
                                                         Лучшее CPM: @textStatistics.CharactersPerMinute
                                                     </div>
                                                     <div class="personal-accout__statistics-item">
                                                         Лучшее время: @textStatistics.Miliseconds.GetTimeInNormalForm()
                                                     </div>
                                                     <div class="personal-accout__statistics-item">
-                                                        Лучшее количество ошибок: @textStatistics.CountOfErrors
+                                                        Лучший процент ошибок: @textStatistics.GetPercentOfErrors()
                                                     </div>
                                                 </div>
                                                 <a class="personal-account__small-button personal-accout__button"
@@ -131,7 +137,7 @@
                     </div>
                     <div class="personal-account__personalization-blcok"
                          id="personal-account__personalization-blcok">
-                        Блок персонализации
+                        not available now
                     </div>
                 </div>
             </div>

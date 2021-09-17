@@ -15,15 +15,13 @@
             @if (Model.BestTextStatistics == null)
             {
                 <div class="text-write__info" id="text-write__info">
-                    Количество неверных вводов: @Model.CurrentTextStatistics.CountOfErrors
-                    @*<br>Количество верных вводов: @Model.CurrentTextStatistics.CountOfCorrects*@
+                    Процент ошибок: @Model.CurrentTextStatistics.GetPercentOfErrors()
                 </div>
             }
             else
             {
                 <div class="text-write__info" id="text-write__info">
-                    Количество неверных вводов: @Model.CurrentTextStatistics.CountOfErrors (Лучшее: @Model.BestTextStatistics.CountOfErrors)
-                    @*<br>Количество верных вводов: @Model.CurrentTextStatistics.CountOfCorrects (Лучшее: @Model.BestTextStatistics.CountOfCorrects)*@
+                    Процент ошибок: @Model.CurrentTextStatistics.GetPercentOfErrors() (Лучшее: @Model.BestTextStatistics.GetPercentOfErrors())
                 </div>
             }
             <div class="text-write__buttons">

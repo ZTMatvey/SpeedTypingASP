@@ -108,8 +108,6 @@ function UpdateActualCorrectString() {
         currentIdOfCurrentString = 0;
         correctStringTextbox.innerHTML = '';
         AllCorrectInTextWrite();
-        //inputField.style.borderColor = 'green';
-        //inputField.style.backgroundColor = 'rgba(0, 255, 0, .4)';
         return 0;
         UpdateActualCorrectString();
     }
@@ -156,14 +154,10 @@ function validateInputField(isAdded) {
             }
         }
         ErrorInTextWrite();
-        //inputField.style.borderColor = 'red';
-        //inputField.style.backgroundColor = 'rgba(255, 0, 0, .4)';
         hasError = true;
     }
     else if (hasError) {
         NormalInTextWrite();
-        //inputField.style.borderColor = '#9BA1F2';
-        //inputField.style.backgroundColor = 'transparent';
         hasError = false;
     } else if (value.length > maxCountOfCorrectsInLine) {
         maxCountOfCorrectsInLine++;
@@ -183,6 +177,10 @@ function TextChanged() {
         symbAdded = true;
     else
         symbAdded = inputField.value.includes(lastStr);
+    if (Math.abs(inputField.value.length - lastStr.length) !== 1) {
+        inputField.value = lastStr;
+        return;
+    }
     validateInputField(symbAdded);
     lastStr = inputField.value;
 }

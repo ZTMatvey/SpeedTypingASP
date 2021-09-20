@@ -1,6 +1,8 @@
 ﻿@model UserInformation
+@inject DataManager dataManager
 @{
-    var textsStatistics = Model.GetTextsStatistics();
+    var statisticType = dataManager.StatisticTypes.GetStatisticTypeById(Model.NormalStatisticTypeId);
+    var textsStatistics = statisticType.GetTextsStatistics();
     var typeOfTextsStatistics = new Dictionary<string, List<TextStatistics>>();
 
     var pattern = @"([^{]+)\s{(.+)}";
@@ -80,13 +82,13 @@
                          id="personal-account__progress-blcok">
                         <div class="personal-account__global-info">
                             <div class="personal-account__global-info-item">
-                                Всего времени: @Model.AllTimeMiliseconds.GetTimeInNormalForm()
+                                Всего времени: @statisticType.AllTimeMiliseconds.GetTimeInNormalForm()
                             </div>
                             <div class="personal-account__global-info-item">
-                                Средний CPM: @Model.AverageCPM
+                                Средний CPM: @statisticType.AverageCPM
                             </div>
                             <div class="personal-account__global-info-item">
-                                Средний процент ошибок: @Model.AverageErrorPercent
+                                Средний процент ошибок: @statisticType.AverageErrorPercent
                             </div>
                         </div>
                         @if (typeOfTextsStatistics.Any())

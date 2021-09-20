@@ -27,6 +27,7 @@ namespace SpeedTypingASP
             Configuration.Bind("Project", new Config());
 
             services.AddTransient<ITextRepository, EFTextRepository>();
+            services.AddTransient<IStatisticTypeRepository, EFStatisticTypeRepository>();
             services.AddTransient<DataManager>();
 
             services

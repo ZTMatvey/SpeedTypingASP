@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeedTypingASP.Domain;
 
 namespace SpeedTypingASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210920130356_EntityUserInfoAddedFkToNormalStatisticType")]
+    partial class EntityUserInfoAddedFkToNormalStatisticType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace SpeedTypingASP.Migrations
                         new
                         {
                             Id = "dc086066-451d-4cb1-a1ad-933352eb82b4",
-                            ConcurrencyStamp = "8daff970-a7b5-43c3-a945-9cf524799c2d",
+                            ConcurrencyStamp = "602221d9-a9e1-48b7-a642-12e717d8bc62",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "d4dad604-45e4-4ee7-b7b1-697bf7a623b2",
-                            ConcurrencyStamp = "6a808ce5-2662-4e85-b2cc-fdb01611ab92",
+                            ConcurrencyStamp = "3e8a80cc-b6c4-41e0-9bd4-f8425a1c6beb",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -297,13 +299,13 @@ namespace SpeedTypingASP.Migrations
                         {
                             Id = "215eedc8-7e86-46f6-88dc-6b052c4ed7b0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1f43388c-30bc-48c6-ae79-8c64617d9c77",
+                            ConcurrencyStamp = "12acb9be-426c-49b2-89c4-c9181eed72f5",
                             Email = "zenoteper@icloud.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ZENOTEPER@ICLOUD.COM",
                             NormalizedUserName = "MATVEY",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGhN15n5ZQ67dnInsdIacZt10jUE4XMBaQsHUMr62vITrkLGG5MbGjjxnE5wDDZVTA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAlEEwX8Jxkwrh3QTgadEkPlUOEPJ/IqfYV6IhDsK0PWkYkvONvufMEKtZs6+xGxPA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -313,13 +315,13 @@ namespace SpeedTypingASP.Migrations
                         {
                             Id = "f294e833-15e9-4066-8b41-61847ff6f0f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "deb064f2-3663-4ecd-ac98-b66b2b83d22b",
+                            ConcurrencyStamp = "da278478-9eaf-4cac-a4e0-bdae43f1a1ae",
                             Email = "someuser@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SOMEUSER@EMAIL.COM",
                             NormalizedUserName = "SOMEUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPgcoPvWv2c61KjyZRCqSmmIG+uxVUsOehdLY8WWpa+HLIpehTkhKuqUtsSesEOskA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHckV6eWLXneWytE8cNOasa0k4pSHKJcJGFpAGOXQgPQPxRpfNghUnsZzFCY746R3g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

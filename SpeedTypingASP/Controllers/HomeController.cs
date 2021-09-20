@@ -123,7 +123,7 @@ namespace SpeedTypingASP.Controllers
             if(signInManager.IsSignedIn(User))
             {
                 var user = await userManager.GetUserAsync(User);
-                var bestStatistics = user.SetTextStatisticsAndGetBestStatistics(textSize, 
+                var bestStatistics = user.ChangeStatisticTypeAndGetBest(dataManager, StatisticTypeViews.Normal, textSize, 
                     textStatistics);
                 resultViewModel.BestTextStatistics = bestStatistics;
                 var result = await userManager.UpdateAsync(user);

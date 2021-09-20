@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SpeedTypingASP.Domain.Entities;
@@ -18,6 +19,10 @@ namespace SpeedTypingASP.Domain.Repositories.EF
         public Text GetTextByName(string name) => context.Texts.FirstOrDefault(x => x.Title == name);
         public void SaveText(Text text)
         {
+            var isOnlyDigitsAndLetters = Regex.IsMatch(text.Title, @"^[a-zA-Zа-яА-Я0-9\s]+$");
+            if (!isOnlyDigitsAndLetters)
+                throw new ArgumentException("Ошиюка! Название текста может содержать только цифры и буквы.");
+
             if (text.Id == default)
             {
                 text.Id = Guid.NewGuid().ToString();    

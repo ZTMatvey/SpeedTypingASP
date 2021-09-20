@@ -9,7 +9,7 @@ namespace SpeedTypingASP.Domain.Entities
 {
     public abstract class EntityBase
     {
-        [Required]
+        [Required][Key]
         public string Id { get; set; }
     }
 }

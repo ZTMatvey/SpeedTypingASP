@@ -15,6 +15,7 @@ namespace SpeedTypingASP.Domain
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
 
         public DbSet<Text> Texts { get; set; }
+        public DbSet<StatisticType> StatisticTypes { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

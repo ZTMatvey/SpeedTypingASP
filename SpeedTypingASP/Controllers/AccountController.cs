@@ -113,7 +113,7 @@ namespace SpeedTypingASP.Controllers
             if (signInManager.IsSignedIn(User))
             {
                 var user = await userManager.GetUserAsync(User);
-                user.RemoveTextStatisticsByName(textTitle);
+                user.NormalStatisticType.RemoveTextStatisticsByName(textTitle);
                 await userManager.UpdateAsync(user);
                 return View("PersonalAccount", user);
             }

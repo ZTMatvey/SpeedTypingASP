@@ -26,6 +26,7 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Text model)
         {
+            //todo вынести вместе с ADD
             if (ModelState.IsValid)
             {
                 try
@@ -33,9 +34,13 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
                     dataManager.Texts.SaveText(model);
                     return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
                 }
+                catch (ArgumentException e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", "Ошибка при сохранении сущности в базу данных. Проверьте корректность введенной информации");
+                    ModelState.AddModelError("", "Ошибка! Проверьте корректность введенных данных");
                 }
             }
             return View(model);
@@ -55,9 +60,13 @@ namespace SpeedTypingASP.Areas.Admin.Controllers
                     dataManager.Texts.SaveText(model);
                     return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
                 }
+                catch (ArgumentException e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", "Ошибка при сохранении сущности в базу данных. Проверьте корректность введенной информации");
+                    ModelState.AddModelError("", "Ошибка! Проверьте корректность введенных данных");
                 }
             }
             return View(model);
